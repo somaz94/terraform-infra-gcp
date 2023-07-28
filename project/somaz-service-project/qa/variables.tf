@@ -34,6 +34,11 @@ variable "subnet_share" {}
 variable "gke_pod" {}
 variable "gke_service" {}
 
+## compute engine(bastion)
+variable "bastion" {}
+variable "bastion_ip" {}
+variable "public_ip" {}
+variable "nfs_client" {}
 
 # DB(Mysql) ##
 variable "db_admin_user" {}
@@ -47,6 +52,9 @@ variable "additional_databases" {
     collation = string
   }))
 }
+
+# Memorystore(Redis)
+variable "redis" {}
 
 ## GKE ##
 variable "gke" {}

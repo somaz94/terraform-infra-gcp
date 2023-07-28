@@ -32,9 +32,9 @@ resource "google_compute_instance" "bastion" {
       sudo apt-get install -y apt-transport-https ca-certificates curl nfs-common mysql-client
       curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
       sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
-      sudo mkdir -p /home/somaz/dev
-      sudo mount -t nfs <nfs-server-ip>:/nfs/dev /home/somaz/dev   # change <nfs-server-ip>
-      echo "<nfs-server-ip>:/nfs/dev /home/somaz/dev nfs defaults 0 0" | sudo tee -a /etc/fstab
+      sudo mkdir -p /home/somaz/dev /home/somaz/qa
+      sudo mount -t nfs <nfs-server-ip>:/nfs/qa /home/somaz/qa    # change <nfs-server-ip>
+      echo "<nfs-server-ip>:/nfs/qa /home/somaz/qa nfs defaults 0 0" | sudo tee -a /etc/fstab
       EOF
 
   network_interface {

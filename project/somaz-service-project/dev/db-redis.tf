@@ -46,3 +46,27 @@ module "mysql" {
   additional_databases = var.additional_databases
 
 }
+
+## memorystore(redis) ##
+module "memorystore" {
+  source = "../../../modules/memorystore"
+
+  name        = var.redis
+  project     = var.project
+  region      = var.region
+  labels      = local.default_labels
+  location_id = "${var.region}-a"
+  # alternative_location_id = "projects/${var.host_project}/global/networks/${var.shared_vpc}-b"
+  enable_apis             = true
+  auth_enabled            = false
+  transit_encryption_mode = "DISABLED"
+  tier                    = "BASIC"
+  connect_mode            = "PRIVATE_SERVICE_ACCESS"
+  authorized_network      = "projects/${var.host_project}/global/networks/${var.shared_vpc}"
+  reserved_ip_range       = "google-managed-services-mgmt-share-vpc"
+  memory_size_gb          = 1
+  persistence_config = {
+    persistence_mode    = "DISABLED"
+    rdb_snapshot_period = null
+  }
+}

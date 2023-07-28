@@ -53,6 +53,9 @@ variable "additional_databases" {
   }))
 }
 
+# Memorystore(Redis)
+variable "redis" {}
+
 ## GKE ##
 variable "gke" {}
 
