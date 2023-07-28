@@ -1,0 +1,21 @@
+## Cloud Armor ##
+module "cloud_armor_ip_allow" {
+  source = "../../../modules/cloud_armor"
+
+  project_id          = var.project
+  name                = var.ip_allow_rule_name
+  description         = "Cloud Armor Edge security policy for IP Allow"
+  default_rule_action = "deny(403)"
+  type                = "CLOUD_ARMOR_EDGE"
+
+  custom_rules = {
+    allow_specific_ip_range = {
+      action      = "allow"
+      priority    = 10
+      description = "Allow specific IP ranges"
+      expression  = <<-EOT
+        inIpRange(origin.ip, 'xx.xx.xx.xxx/xx') || inIpRange(origin.ip, 'xx.xx.xx.xxx/xx') 
+      EOT
+    }
+  }
+}

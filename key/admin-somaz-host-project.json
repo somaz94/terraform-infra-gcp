@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "somaz-host-project",
+  "private_key_id": "12141ec1djhfdakei23134hjkdfdkjcdak",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqsafsdafsdxsaxxasxxsV\n8pxacfsdafdsafdsf8d88ddhofPixB1UsafasdH+XId/QdWh\nydfasdfsd34342dsadfdC9Y+lgCrJvw+N0NnKjOEjICu1Mlt/VhnJ5JHi\nqCHNxRusadfsdfsdfasdfU8Hw+PFYAhMe9YNWZewNPUfCCITksasfsafswJixuygByRAmy7z4m\nVZFaRTNOsfR5taYG0pKEvy7yQMMXMAiQnSQL2i/kgxwxRvwE4YmzK3UhVOOx73n7\nxH/w34UapFvQZBbx/D7lytKMU2ElVIgSdLv4XSHiIy9z0Vljjqcj/sHeu4KnnGTY\nO9+VRomjAgMBAAECggEAD+LeGmyG3dzY9tyemYnsfnVF7uw6qfJeS+snucEWB6ak\nT6AZJn8WZbEzNap0bCuhhejyWFakg8aJNicuk+CxUONBqYa5mQBmXuySWZxKmjY8\n1AAFm3hjWQSX7rNOu5JD6PNGce/1g+p8JYc1zrB5g0265xPUAS9YFK3hzmIPlqFW\nWfI96UdKtfmgSm3b3jPEylYHztDTpSgs7lVIYzizg1l8VCgWM3bUUfbPrv5qED31\nti9xpAAnpGC98G01AAfiM401hbv/tZszNtxj/P79D+4Rr47U9zg3pKv7nmK294SK\ntF8Q1PBWP2+atbvFtddL642orEsa2iG8tKoUxFQfDQKBgQD8+vLd2aWa7KRYxSlE\nFtHYqKtZFngqI5pb3TafBHD97GHj3unmcWHuMpTJhl9iIQnaWT0RpjtXrKkfbfDv\nG53nBQz53zBevWt6Tfbtw0VWNSfBBW2wQr2dbsLZMs+I42d+7bH1BcTgnp53gW87\nfqAC7WG/VZJCLVLiwqyG+FWYxQKBgQDwu0a6lupPQD3zUyVHo3Dfc7Y7rgCMtCoI\nIYH+YoRZpcG1bt8lxStltwf+MMQoVHhAKmFl7hH7bgYhx692kS2+u1+NTqFC9636\nlhtRk/B1cftxUB+jXoqI9l2fMEHQOu9zQdiN6l3O67oseg/KGDsx9CFIB5wCUE/z\ntwu1elkvRwKBgEhLyyZdcbdBk4IO7kkYIGZDZZxzEGoyfIVuRZLSKRxX9m2xobSK\niIsTB3REI3Qervsob4xgrirTHA3wVF9wzAJebiPmhaM9jL6KE1xFZsZJMJA35e3u\nVNPt+F8r5yVen5Ali6rTOD1c9zp90fT1rfLINhwA72hcHYjSS43S4FtlAoGAfMlX\nXJmmU/aFJoDPLld2xx4ANOd5uXYa46Qa8na3DJFz3Ezgt3+Bg3RhXE6DIDTJMNnH\nK0NBZwgdfZ05Q0j2YYxXd7Ruu3wQX3k4KA179CVlpdNW0yTKwzySQ1aMhxhFz4Uu\ncEIw5nYjR7LuRGBTLw3RwrjPEhP3neog063cVTkCgYEAnFqvgyNYkwRF5M0bmv7V\nqAAuIV7Ek4XtW5y8WMqcqG1xcPvBLhGcg7cNzy/OsM7E8b2SPdhxH46Piaav+Mpg\n8rpDbmxnDo7Un/18h/ISx4KI8By4QfvMYIJb3cejUenI4tAGhWmtKRJRhy5iJ5Vk\nm2uRj9szz9jzQ79DO0o5/PE=\n-----END PRIVATE KEY-----\n",
+  "client_email": "admin@somaz-host-project.iam.gserviceaccount.com",
+  "client_id": "108880223432453425435345",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/admin%40somaz-host-project.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
