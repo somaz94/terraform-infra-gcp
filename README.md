@@ -45,7 +45,7 @@ terraform-infra-gcp
 ```
 
 ## Architecture
-![architecture](https://github.com/somaz94/terraform-infra-gcp/assets/112675579/23b306e8-b6a5-4458-96f4-9cd98be618a8)
+![architecture](![architecture](https://github.com/somaz94/terraform-infra-gcp/assets/112675579/a7b5b1b8-82b9-4dff-b031-b7f0f5c8d2b2)
 
 ## Reference(Module)
 - [cloud_armor](https://github.com/GoogleCloudPlatform/terraform-google-cloud-armor)
