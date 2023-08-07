@@ -180,3 +180,104 @@ resource "google_compute_instance" "service_server" {
   }
 
 }
+
+## Compute Engine ##(gitlab)
+
+resource "google_compute_disk" "git_data_disk" {
+  name  = "git-data-disk"
+  type  = "pd-balanced"
+  size  = 500
+  zone  = "${var.region}-a"
+}
+
+resource "google_compute_disk" "lfs_objects_disk" {
+  name  = "lfs-objects-disk"
+  type  = "pd-balanced"
+  size  = 500
+  zone  = "${var.region}-a"
+}
+
+resource "google_compute_disk" "backups_disk" {
+  name  = "backups-disk"
+  type  = "pd-balanced"
+  size  = 1000
+  zone  = "${var.region}-a"
+}
+
+resource "google_compute_address" "gitlab_server_ip" {
+  name = var.gitlab_server_ip
+}
+
+resource "google_compute_instance" "gitlab_server" {
+  depends_on = [
+    google_compute_address.gitlab_server_ip,
+    google_compute_disk.git_data_disk,
+    google_compute_disk.lfs_objects_disk,
+    google_compute_disk.backups_disk    
+  
+  ]
+
+  name                      = var.gitlab_server
+  machine_type              = "n2-standard-2"
+  labels                    = local.default_labels
+  zone                      = "${var.region}-a"
+  allow_stopping_for_update = true
+
+  tags = [var.nfs_client, var.gitlab_server]
+
+  boot_disk {
+    initialize_params {
+      image = "ubuntu-os-cloud/ubuntu-2004-lts"
+      size  = 100
+    }
+  }
+
+  attached_disk {
+    source      = google_compute_disk.git_data_disk.self_link
+    device_name = google_compute_disk.git_data_disk.name
+  }
+
+  attached_disk {
+    source      = google_compute_disk.lfs_objects_disk.self_link
+    device_name = google_compute_disk.lfs_objects_disk.name
+  }
+
+  attached_disk {
+    source      = google_compute_disk.backups_disk.self_link
+    device_name = google_compute_disk.backups_disk.name
+  }
+
+  metadata = {
+    ssh-keys = "somaz:${file("../../key/somaz-gitlab-server.pub")}"
+  }
+
+  metadata_startup_script = <<-EOF
+      #!/bin/bash
+      sudo apt-get update
+      sudo apt-get install -y curl openssh-server ca-certificates
+      curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | sudo bash 
+      sudo EXTERNAL_URL="https://gitlab.somaz.link/" apt-get install gitlab-ce     # Replace with your Domain
+      echo "letsencrypt['enable'] = false" | sudo tee -a /etc/gitlab/gitlab.rb
+      sleep 10
+      sudo gitlab-ctl reconfigure
+      sudo gitlab-ctl restart
+      sudo mkfs.ext4 /dev/sdb
+      sudo mkfs.ext4 /dev/sdc
+      sudo mkfs.ext4 /dev/sdd
+      echo "/dev/sdb /var/opt/gitlab/git-data ext4 defaults 0 0" | sudo tee -a /etc/fstab
+      echo "/dev/sdc /var/opt/gitlab/gitlab-rails/shared/lfs-objects ext4 defaults 0 0" | sudo tee -a /etc/fstab
+      echo "/dev/sdd /var/opt/gitlab/backups ext4 defaults 0 0" | sudo tee -a /etc/fstab
+      sudo mount -a
+      EOF        
+
+  network_interface {
+    network    = var.shared_vpc
+    subnetwork = "${var.subnet_share}-mgmt-a"
+
+    access_config {
+      ## Include this section to give the VM an external ip ##
+      nat_ip = google_compute_address.gitlab_server_ip.address
+    }
+  }
+
+}

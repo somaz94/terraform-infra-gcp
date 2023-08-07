@@ -90,3 +90,17 @@ resource "google_compute_firewall" "ganache_instance_group_health_check" {
   source_ranges = ["130.211.0.0/22", "35.191.0.0/16"]     # Don't Change https://cloud.google.com/load-balancing/docs/health-checks?hl=ko#firewall_rules
   target_tags   = [var.ganache_server]
 }
+
+resource "google_compute_firewall" "gitlab_server_group_health_check" {
+
+  name    = "allow-gitlab-server-group-health-check"
+  network = var.shared_vpc
+
+  allow {
+    protocol = "tcp"
+    ports    = ["80", "443", "22"]
+  }
+
+  source_ranges = ["130.211.0.0/22", "35.191.0.0/16"]
+  target_tags   = [var.gitlab_server]
+}

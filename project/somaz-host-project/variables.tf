@@ -82,3 +82,8 @@ variable "prod_somaz_repo" {
   description = "List of Artifact Registry prod dsp repository names"
   type        = list(string)
 }
+
+# gitlab
+variable "gitlab_server" {}
+variable "gitlab_server_ip" {}
+variable "gitlab_server_lb_ip_name" {}

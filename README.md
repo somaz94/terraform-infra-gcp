@@ -6,7 +6,6 @@ terraform-infra-gcp
 │   ├── admin-somaz-service-project-dev.json
 │   ├── admin-somaz-service-project-qa.json
 │   ├── admin-somaz-service-project-prod.json
-│   ├── admin-somaz-gitlab-project.json
 │   ├── admin-somaz-host-project.json
 │   ├── somaz-bastion.pub
 │   ├── somaz-gcs-cloudfront.json
@@ -38,7 +37,6 @@ terraform-infra-gcp
 │   ├── service_accounts
 │   └── workload_identity_federation
 └── project
-    ├── somaz-gitlab-project
     ├── somaz-service-project
     │   ├── dev
     │   ├── prod
