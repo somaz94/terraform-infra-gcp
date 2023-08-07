@@ -78,9 +78,9 @@ resource "google_compute_instance" "gitlab_server" {
       sleep 10
       sudo gitlab-ctl reconfigure
       sudo gitlab-ctl restart
-      sudo mkfs.xfs /dev/sdb
-      sudo mkfs.xfs /dev/sdc
-      sudo mkfs.xfs /dev/sdd
+      sudo mkfs.ext4 /dev/sdb
+      sudo mkfs.ext4 /dev/sdc
+      sudo mkfs.ext4 /dev/sdd
       echo "/dev/sdb /var/opt/gitlab/git-data ext4 defaults 0 0" | sudo tee -a /etc/fstab
       echo "/dev/sdc /var/opt/gitlab/gitlab-rails/shared/lfs-objects ext4 defaults 0 0" | sudo tee -a /etc/fstab
       echo "/dev/sdd /var/opt/gitlab/backups ext4 defaults 0 0" | sudo tee -a /etc/fstab
