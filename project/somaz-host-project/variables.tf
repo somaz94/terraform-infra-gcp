@@ -34,6 +34,7 @@ variable "prod_gke_service" {}
 variable "nfs_server" {}
 variable "service_server" {}
 variable "prod_nfs_server" {}
+variable "gitlab_server" {}
 variable "nfs_client" {}
 variable "prod_nfs_client" {}
 variable "nfs_server_ip" {}

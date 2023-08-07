@@ -46,7 +46,13 @@ module "vpc" {
       subnet_ip             = "10.77.102.0/24"
       subnet_region         = var.region
       subnet_private_access = "true"
-    }
+    },
+    {
+      subnet_name           = "${var.subnet_share}-gitlab-a"
+      subnet_ip             = "10.77.111.0/24"
+      subnet_region         = var.region
+      subnet_private_access = "true"
+    }    
   ]
 
   secondary_ranges = {

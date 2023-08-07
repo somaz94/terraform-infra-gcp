@@ -13,7 +13,7 @@ resource "google_compute_firewall" "nfs_server_ssh" {
   }
 
   source_ranges = ["${var.public_ip}/32", "${var.public_ip2}/32", "0.0.0.0/0"]
-  target_tags   = [var.nfs_server, var.nfs_client, var.service_server]
+  target_tags   = [var.nfs_server, var.nfs_client, var.service_server, var.gitlab_server]
 }
 
 
