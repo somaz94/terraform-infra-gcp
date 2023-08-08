@@ -30,9 +30,7 @@ resource "google_compute_global_address" "prometheus_lb_ip" {
 }
 
 resource "google_dns_record_set" "prometheus_record" {
-  depends_on = [
-    google_dns_managed_zone.mgmt_zone
-  ]
+  depends_on = [google_dns_managed_zone.mgmt_zone]
   name         = "prometheus.mgmt.somaz.link." # Notice the trailing dot, it's necessary
   type         = "A"
   ttl          = 300
@@ -45,9 +43,7 @@ resource "google_compute_global_address" "grafana_lb_ip" {
 }
 
 resource "google_dns_record_set" "grafana_record" {
-  depends_on = [
-    google_dns_managed_zone.mgmt_zone
-  ]
+  depends_on = [google_dns_managed_zone.mgmt_zone]
   name         = "grafana.mgmt.somaz.link." # Notice the trailing dot, it's necessary
   type         = "A"
   ttl          = 300
@@ -84,9 +80,7 @@ resource "google_compute_global_address" "gitlab_server_lb_ip" {
 }
 
 resource "google_dns_record_set" "mongo_log_record" {
-  depends_on = [
-    google_dns_managed_zone.mgmt_zone
-  ]
+  depends_on = [google_dns_managed_zone.mgmt_zone]
   name         = "mongo-log.mgmt.somaz.link." # Notice the trailing dot, it's necessary
   type         = "A"
   ttl          = 300
@@ -95,9 +89,7 @@ resource "google_dns_record_set" "mongo_log_record" {
 }
 
 resource "google_dns_record_set" "blockchain_record" {
-  depends_on = [
-    google_dns_managed_zone.mgmt_zone
-  ]
+  depends_on = [google_dns_managed_zone.mgmt_zone]
   name         = "blockchain.mgmt.somaz.link." # Notice the trailing dot, it's necessary
   type         = "A"
   ttl          = 300

@@ -33,7 +33,7 @@ module "workload_identity_federation" {
   service_accounts = [
     {
       name           = data.google_service_account.github-action.name
-      attribute      = "attribute.repository/<somaz94>/*" # attribute.repository/<github repository>/*
+      attribute      = "attribute.repository/somaz94/*" # attribute.repository/github repository/*
       all_identities = true
     }
   ]
