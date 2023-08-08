@@ -107,7 +107,7 @@ resource "google_dns_record_set" "blockchain_record" {
 
 resource "google_dns_record_set" "gitlab_server_record" {
   depends_on   = [google_dns_managed_zone.mgmt_zone]
-  name         = "gitlab.somaz.link." # Notice the trailing dot, it's necessary and Replace with your Domain
+  name         = "gitlab.mgmt.somaz.link." # Notice the trailing dot, it's necessary and Replace with your Domain
   type         = "A"
   ttl          = 300
   managed_zone = google_dns_managed_zone.mgmt_zone.name

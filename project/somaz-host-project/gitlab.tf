@@ -2,7 +2,7 @@
 resource "google_compute_managed_ssl_certificate" "gitlab_server" {
   name = "gitlab-server-ssl-cert"
   managed {
-    domains = ["gitlab.somaz.link"]
+    domains = ["gitlab.mgmt.somaz.link"]
   }
 }
 
