@@ -4,6 +4,7 @@ resource "google_compute_global_address" "web_lb_ip" {
 }
 
 resource "google_dns_record_set" "web_record" {
+  depends_on = [google_compute_global_address.web_lb_ip]
   name         = "qa-web.somaz.link." # Notice the trailing dot, it's necessary
   type         = "A"
   ttl          = 300
@@ -17,6 +18,7 @@ resource "google_compute_global_address" "game_lb_ip" {
 }
 
 resource "google_dns_record_set" "game_record" {
+  depends_on = [google_compute_global_address.game_lb_ip]
   name         = "qa-game.somaz.link."
   type         = "A"
   ttl          = 300
@@ -30,6 +32,7 @@ resource "google_compute_global_address" "was_lb_ip" {
 }
 
 resource "google_dns_record_set" "was_record" {
+  depends_on = [google_compute_global_address.was_lb_ip]
   name         = "qa-was.somaz.link."
   type         = "A"
   ttl          = 300
@@ -43,6 +46,7 @@ resource "google_compute_global_address" "asset_somaz_link_lb_ip" {
 }
 
 resource "google_dns_record_set" "asset_record" {
+  depends_on = [google_compute_global_address.asset_somaz_link_lb_ip]
   name         = "qa-asset.somaz.link."
   type         = "A"
   ttl          = 300
@@ -56,6 +60,7 @@ resource "google_compute_global_address" "somaz_link_lb_ip" {
 }
 
 resource "google_dns_record_set" "cdn_record" {
+  depends_on = [google_compute_global_address.somaz_link_lb_ip]
   name         = "qa.somaz.link."
   type         = "A"
   ttl          = 300
