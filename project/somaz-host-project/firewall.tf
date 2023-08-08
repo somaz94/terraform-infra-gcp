@@ -1,8 +1,6 @@
 ## Firewall ##
 resource "google_compute_firewall" "nfs_server_ssh" {
-  depends_on = [
-    module.vpc
-  ]
+  depends_on = [module.vpc]
 
   name    = "allow-ssh-nfs-server"
   network = var.shared_vpc
@@ -18,9 +16,7 @@ resource "google_compute_firewall" "nfs_server_ssh" {
 
 
 resource "google_compute_firewall" "shared_vpc_internal" {
-  depends_on = [
-    module.vpc
-  ]
+  depends_on = [module.vpc]
 
   name    = "allow-shared-vpc-internal"
   network = var.shared_vpc
@@ -37,9 +33,7 @@ resource "google_compute_firewall" "shared_vpc_internal" {
 }
 
 resource "google_compute_firewall" "prod_nfs_server_ssh" {
-  depends_on = [
-    module.prod_vpc
-  ]
+  depends_on = [module.prod_vpc]
 
   name    = "prod-allow-ssh-nfs-server"
   network = var.prod_shared_vpc
@@ -55,9 +49,7 @@ resource "google_compute_firewall" "prod_nfs_server_ssh" {
 
 
 resource "google_compute_firewall" "prod_shared_vpc_internal" {
-  depends_on = [
-    module.prod_vpc
-  ]
+  depends_on = [module.prod_vpc]
 
   name    = "prod-allow-shared-vpc-internal"
   network = var.prod_shared_vpc
@@ -75,9 +67,7 @@ resource "google_compute_firewall" "prod_shared_vpc_internal" {
 
 
 resource "google_compute_firewall" "ganache_instance_group_health_check" {
-  depends_on = [
-    module.vpc
-  ]
+  depends_on = [module.vpc]
 
   name    = "allow-ganache-instance-group-health-check"
   network = var.shared_vpc
@@ -92,6 +82,7 @@ resource "google_compute_firewall" "ganache_instance_group_health_check" {
 }
 
 resource "google_compute_firewall" "gitlab_server_group_health_check" {
+  depends_on = [module.vpc]
 
   name    = "allow-gitlab-server-group-health-check"
   network = var.shared_vpc

@@ -4,9 +4,7 @@ resource "google_compute_address" "bastion_ip" {
 }
 
 resource "google_compute_instance" "bastion" {
-  depends_on = [
-    google_compute_address.bastion_ip
-  ]
+  depends_on = [google_compute_address.bastion_ip]
 
   name                      = var.bastion
   machine_type              = "e2-small"

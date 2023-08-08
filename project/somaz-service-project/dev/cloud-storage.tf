@@ -26,9 +26,7 @@ resource "google_storage_bucket" "asset_somaz_link" {
 
 # Public Read Settings
 resource "google_storage_bucket_iam_binding" "public_read_asset_somaz_link" {
-  depends_on = [
-    google_storage_bucket.asset_somaz_link
-  ]
+  depends_on = [google_storage_bucket.asset_somaz_link]
 
   bucket = var.asset_somaz_link
   role   = "roles/storage.objectViewer"

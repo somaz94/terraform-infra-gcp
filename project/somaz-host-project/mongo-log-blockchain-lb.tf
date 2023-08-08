@@ -96,16 +96,14 @@ resource "google_compute_url_map" "mongo_log_url_map" {
   name            = "mongo-log-url-map"
   description     = "URL map for mongo-log LB"
   default_service = google_compute_backend_service.mongo_log_backend.self_link
-  depends_on = [
-  google_compute_backend_service.mongo_log_backend]
+  depends_on = [google_compute_backend_service.mongo_log_backend]
 }
 
 resource "google_compute_url_map" "blockchain_url_map" {
   name            = "blockchain-url-map"
   description     = "URL map for blockchain LB"
   default_service = google_compute_backend_service.blockchain_backend.self_link
-  depends_on = [
-  google_compute_backend_service.blockchain_backend]
+  depends_on = [google_compute_backend_service.blockchain_backend]
 }
 
 resource "google_compute_global_forwarding_rule" "mongo_log" {
