@@ -24,20 +24,22 @@ resource "google_storage_bucket" "asset_somaz_link" {
 }
 
 resource "google_storage_bucket_iam_member" "public_read_asset_somaz_link" {
-  depends_on = [google_storage_bucket.asset_somaz_link]
   bucket = google_storage_bucket.asset_somaz_link.name
   role   = "roles/storage.objectViewer"
   member = "allUsers"
+
+  depends_on = [google_storage_bucket.asset_somaz_link]
 }
 
 
 resource "google_storage_bucket_iam_member" "asset_somaz_link_members" {
-  depends_on = [google_storage_bucket.asset_somaz_link]
   for_each = toset(var.asset_somaz_link_members)
 
   bucket = var.asset_somaz_link
   role   = "roles/storage.objectAdmin"
   member = each.key
+
+  depends_on = [google_storage_bucket.asset_somaz_link]
 }
 
 

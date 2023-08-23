@@ -8,23 +8,19 @@ resource "google_compute_managed_ssl_certificate" "cdn_lb_certificate" {
 }
 
 resource "google_compute_backend_bucket" "somaz_link_bucket_backend" {
-  depends_on = [
-    google_storage_bucket.somaz_link,
-    module.cloud_armor_ip_allow
-  ]
   name                 = "dev-somaz-link-backend"
   bucket_name          = var.somaz_link # replace with your bucket name
   enable_cdn           = true
   edge_security_policy = module.cloud_armor_ip_allow.policy_self_link
+
+  depends_on = [google_storage_bucket.somaz_link, module.cloud_armor_ip_allow]
 }
 
 resource "google_compute_url_map" "cdn_url_map" {
-  depends_on = [
-    google_storage_bucket.somaz_link,
-    google_compute_backend_bucket.somaz_link_bucket_backend
-  ]
   name            = "dev-somaz-link-url-map"
   default_service = google_compute_backend_bucket.somaz_link_bucket_backend.id
+
+  depends_on = [google_storage_bucket.somaz_link, google_compute_backend_bucket.somaz_link_bucket_backend]
 }
 
 resource "google_compute_global_forwarding_rule" "https_forwarding_rule" {

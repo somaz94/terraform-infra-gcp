@@ -1,7 +1,6 @@
 ## Cloud Armor ##
 module "cloud_armor_ip_allow" {
-  source = "../../../modules/cloud_armor"
-
+  source              = "../../../modules/cloud_armor"
   project_id          = var.project
   name                = var.ip_allow_rule_name
   description         = "Cloud Armor Edge security policy for IP Allow"

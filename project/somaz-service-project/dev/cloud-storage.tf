@@ -1,14 +1,13 @@
 ## GCS Buckets(Cloud Storage=S3) ##
 module "gcs_buckets" {
-  depends_on = [
-    google_dns_record_set.asset_record
-  ]
   source     = "../../../modules/gcs_buckets"
   names      = keys(local.buckets_versioning)
   project_id = var.project
   location   = var.region
   labels     = local.default_labels
   versioning = local.buckets_versioning
+
+  depends_on = [google_dns_record_set.asset_record]
 }
 
 # CORS Settings
@@ -26,13 +25,13 @@ resource "google_storage_bucket" "asset_somaz_link" {
 
 # Public Read Settings
 resource "google_storage_bucket_iam_binding" "public_read_asset_somaz_link" {
-  depends_on = [google_storage_bucket.asset_somaz_link]
-
   bucket = var.asset_somaz_link
   role   = "roles/storage.objectViewer"
   members = [
     "allUsers",
   ]
+
+  depends_on = [google_storage_bucket.asset_somaz_link]
 }
 
 # ADD Bucket Member

@@ -14,7 +14,6 @@ module "mysql" {
   maintenance_window_hour         = "0"
   maintenance_window_update_track = "stable"
 
-
   ip_configuration = {
     ipv4_enabled                                  = false
     require_ssl                                   = false

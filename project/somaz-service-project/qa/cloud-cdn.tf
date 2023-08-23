@@ -8,23 +8,19 @@ resource "google_compute_managed_ssl_certificate" "cdn_lb_certificate" {
 }
 
 resource "google_compute_backend_bucket" "somaz_link_bucket_backend" {
-  depends_on = [
-    google_storage_bucket.somaz_link,
-    module.cloud_armor_ip_allow
-  ]
   name                 = "qa-somaz-link-backend"
   bucket_name          = var.somaz_link # replace with your bucket name
   enable_cdn           = true
   edge_security_policy = module.cloud_armor_ip_allow.policy_self_link
+
+  depends_on = [google_storage_bucket.somaz_link, module.cloud_armor_ip_allow]
 }
 
 resource "google_compute_url_map" "cdn_url_map" {
-  depends_on = [
-    google_storage_bucket.somaz_link,
-    google_compute_backend_bucket.somaz_link_bucket_backend
-  ]
   name            = "qa-somaz-link-url-map"
   default_service = google_compute_backend_bucket.somaz_link_bucket_backend.id
+
+  depends_on = [google_storage_bucket.somaz_link, google_compute_backend_bucket.somaz_link_bucket_backend]
 }
 
 resource "google_compute_global_forwarding_rule" "https_forwarding_rule" {
@@ -50,22 +46,18 @@ resource "google_compute_managed_ssl_certificate" "asset_cdn_lb_certificate" {
 }
 
 resource "google_compute_backend_bucket" "asset_somaz_link_bucket_backend" {
-  depends_on = [
-    google_storage_bucket.asset_somaz_link,
-    module.cloud_armor_ip_allow
-  ]
-  name                 = "qa-asset-somaz-link-backend"
-  bucket_name          = var.asset_somaz_link # replace with your bucket name
-  enable_cdn           = true
+  name        = "qa-asset-somaz-link-backend"
+  bucket_name = var.asset_somaz_link # replace with your bucket name
+  enable_cdn  = true
+
+  depends_on = [google_storage_bucket.asset_somaz_link, module.cloud_armor_ip_allow]
 }
 
 resource "google_compute_url_map" "asset_cdn_url_map" {
-  depends_on = [
-    google_storage_bucket.asset_somaz_link,
-    google_compute_backend_bucket.asset_somaz_link_bucket_backend
-  ]
   name            = "qa-asset-somaz-link-url-map"
   default_service = google_compute_backend_bucket.asset_somaz_link_bucket_backend.id
+
+  depends_on = [google_storage_bucket.asset_somaz_link, google_compute_backend_bucket.asset_somaz_link_bucket_backend]
 }
 
 resource "google_compute_target_https_proxy" "asset_cdn_https_proxy" {
