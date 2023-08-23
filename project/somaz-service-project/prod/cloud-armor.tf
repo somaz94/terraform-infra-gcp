@@ -14,7 +14,7 @@ module "cloud_armor_ip_allow" {
       priority    = 10
       description = "Allow specific IP ranges"
       expression  = <<-EOT
-        inIpRange(origin.ip, '14.32.77.192/27') || inIpRange(origin.ip, '106.247.237.200/30') 
+        inIpRange(origin.ip, 'xx.xx.xx.xxx/27') || inIpRange(origin.ip, 'xxx.xxx.xxx.xxx/30') 
       EOT
     }
   }
