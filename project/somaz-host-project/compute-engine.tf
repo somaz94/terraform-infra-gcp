@@ -147,6 +147,7 @@ resource "google_compute_address" "service_server_ip" {
 
 resource "google_compute_instance" "service_server" {
   depends_on = [
+    module.vpc,
     google_compute_address.service_server_ip
   ]
 
@@ -210,6 +211,7 @@ resource "google_compute_address" "gitlab_server_ip" {
 
 resource "google_compute_instance" "gitlab_server" {
   depends_on = [
+    module.vpc,
     google_compute_address.gitlab_server_ip,
     google_compute_disk.git_data_disk,
     google_compute_disk.lfs_objects_disk,
