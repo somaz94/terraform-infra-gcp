@@ -10,15 +10,14 @@ module "service_accounts" {
 ## Workload Identity Federation ##
 
 data "google_service_account" "github-action" {
-  depends_on = [module.service_accounts]
   account_id = "github-action"
+
+  depends_on = [module.service_accounts]
 }
 
 module "workload_identity_federation" {
-  source = "../../modules/workload_identity_federation"
-
-  project_id = var.project
-
+  source      = "../../modules/workload_identity_federation"
+  project_id  = var.project
   pool_id     = "pool-github-action"
   provider_id = "provider-github-action"
 

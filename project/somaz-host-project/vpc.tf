@@ -46,7 +46,7 @@ module "vpc" {
       subnet_ip             = "10.77.102.0/24"
       subnet_region         = var.region
       subnet_private_access = "true"
-    }  
+    }
   ]
 
   secondary_ranges = {
@@ -101,10 +101,12 @@ resource "google_compute_shared_vpc_host_project" "host_project" {
 }
 
 resource "google_compute_shared_vpc_service_project" "service_project" {
-  depends_on      = [google_compute_shared_vpc_host_project.host_project]
-  for_each        = toset(var.service_project)
+  for_each = toset(var.service_project)
+
   host_project    = var.project
   service_project = each.key
+
+  depends_on = [google_compute_shared_vpc_host_project.host_project]
 }
 
 ## Network(Prod Shared VPC) ##
@@ -148,11 +150,11 @@ module "prod_vpc" {
   secondary_ranges = {
     "${var.prod_subnet_share}-prod-a" = [
       {
-        range_name    = var.prod_dsp_gke_pod
+        range_name    = var.prod_gke_pod
         ip_cidr_range = "10.101.0.0/17"
       },
       {
-        range_name    = var.prod_dsp_gke_service
+        range_name    = var.prod_gke_service
         ip_cidr_range = "10.101.128.0/22"
       },
     ]
@@ -169,8 +171,10 @@ module "prod_vpc" {
 }
 
 resource "google_compute_shared_vpc_service_project" "prod_service_project" {
-  depends_on      = [google_compute_shared_vpc_host_project.host_project]
-  for_each        = toset(var.prod_service_project)
+  for_each = toset(var.prod_service_project)
+
   host_project    = var.project
   service_project = each.key
+
+  depends_on = [google_compute_shared_vpc_host_project.host_project]
 }

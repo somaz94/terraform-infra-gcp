@@ -1,4 +1,4 @@
-## Terraform Backend ##
+## Terraform Backend ## (Available after gcs bucket creation.)
 
 terraform {
   backend "gcs" {

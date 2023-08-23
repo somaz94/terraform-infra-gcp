@@ -7,7 +7,6 @@ resource "google_compute_managed_ssl_certificate" "gitlab_server" {
 }
 
 resource "google_compute_instance_group" "gitlab_server" {
-  depends_on  = [google_compute_instance.gitlab_server]
   name        = "gitlab-server-group"
   description = "Instance Group for gitlab server"
   zone        = "${var.region}-a"
@@ -23,6 +22,7 @@ resource "google_compute_instance_group" "gitlab_server" {
     port = 22
   }
 
+  depends_on = [google_compute_instance.gitlab_server]
 }
 
 resource "google_compute_health_check" "gitlab_server_health_check" {
@@ -59,6 +59,7 @@ resource "google_compute_url_map" "gitlab_server_url_map" {
   name            = "gitlab-server-url-map"
   description     = "URL map for gitlab server"
   default_service = google_compute_backend_service.gitlab_server_backend.self_link
+
   depends_on = [google_compute_backend_service.gitlab_server_backend]
 }
 

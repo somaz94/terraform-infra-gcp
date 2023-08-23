@@ -12,11 +12,11 @@ resource "google_compute_managed_ssl_certificate" "blockchain" {
   }
 }
 
-resource "google_compute_instance_group" "ganache_server" {
+resource "google_compute_instance_group" "service_server" {
   name        = "ganache-server-group"
-  description = "Instance Group for ganache server"
+  description = "Instance Group for service server"
   zone        = "${var.region}-a"
-  instances   = [google_compute_instance.ganache_server.self_link]
+  instances   = [google_compute_instance.service_server.self_link]
 
   named_port {
     name = "http"
@@ -62,7 +62,7 @@ resource "google_compute_backend_service" "mongo_log_backend" {
   protocol    = "HTTP"
   port_name   = "mongo-log"
   backend {
-    group = google_compute_instance_group.ganache_server.self_link
+    group = google_compute_instance_group.service_server.self_link
   }
   health_checks = [google_compute_http_health_check.mongo_log_health_check.self_link]
 }
@@ -73,7 +73,7 @@ resource "google_compute_backend_service" "blockchain_backend" {
   protocol    = "HTTP"
   port_name   = "blockchain"
   backend {
-    group = google_compute_instance_group.ganache_server.self_link
+    group = google_compute_instance_group.service_server.self_link
   }
   health_checks = [google_compute_health_check.blockchain_health_check.self_link]
 }
@@ -96,6 +96,7 @@ resource "google_compute_url_map" "mongo_log_url_map" {
   name            = "mongo-log-url-map"
   description     = "URL map for mongo-log LB"
   default_service = google_compute_backend_service.mongo_log_backend.self_link
+
   depends_on = [google_compute_backend_service.mongo_log_backend]
 }
 
@@ -103,6 +104,7 @@ resource "google_compute_url_map" "blockchain_url_map" {
   name            = "blockchain-url-map"
   description     = "URL map for blockchain LB"
   default_service = google_compute_backend_service.blockchain_backend.self_link
+
   depends_on = [google_compute_backend_service.blockchain_backend]
 }
 

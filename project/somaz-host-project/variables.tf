@@ -19,7 +19,7 @@ variable "dev_gke_service" {}
 variable "qa_gke_pod" {}
 variable "qa_gke_service" {}
 variable "mgmt_gke_pod" {}
-variable "mgmt_service" {}
+variable "mgmt_gke_service" {}
 
 ## prod_vpc
 variable "prod_shared_vpc" {}
@@ -84,6 +84,5 @@ variable "prod_somaz_repo" {
 }
 
 # gitlab
-variable "gitlab_server" {}
 variable "gitlab_server_ip" {}
 variable "gitlab_server_lb_ip_name" {}

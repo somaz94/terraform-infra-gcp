@@ -11,12 +11,6 @@ resource "google_compute_disk" "additional_pd_balanced" {
 }
 
 resource "google_compute_instance" "nfs_server" {
-  depends_on = [
-    module.vpc,
-    google_compute_address.nfs_server_ip,
-    google_compute_disk.additional_pd_balanced
-  ]
-
   name                      = var.nfs_server
   machine_type              = "e2-standard-2"
   labels                    = local.default_labels
@@ -67,6 +61,8 @@ resource "google_compute_instance" "nfs_server" {
 
     }
   }
+
+  depends_on = [module.vpc, google_compute_address.nfs_server_ip, google_compute_disk.additional_pd_balanced]
 }
 
 ## Compute Engine ##
@@ -83,12 +79,6 @@ resource "google_compute_disk" "prod_additional_pd_balanced" {
 }
 
 resource "google_compute_instance" "prod_nfs_server" {
-  depends_on = [
-    module.prod_vpc,
-    google_compute_address.prod_nfs_server_ip,
-    google_compute_disk.prod_additional_pd_balanced
-  ]
-
   name                      = var.prod_nfs_server
   machine_type              = "e2-standard-2"
   labels                    = local.default_labels
@@ -138,6 +128,8 @@ resource "google_compute_instance" "prod_nfs_server" {
 
     }
   }
+
+  depends_on = [module.prod_vpc, google_compute_address.prod_nfs_server_ip, google_compute_disk.prod_additional_pd_balanced]
 }
 
 ## Compute Engine ##
@@ -146,11 +138,6 @@ resource "google_compute_address" "service_server_ip" {
 }
 
 resource "google_compute_instance" "service_server" {
-  depends_on = [
-    module.vpc,
-    google_compute_address.service_server_ip
-  ]
-
   name                      = var.service_server
   machine_type              = "n2-standard-2"
   labels                    = local.default_labels
@@ -180,29 +167,30 @@ resource "google_compute_instance" "service_server" {
     }
   }
 
+  depends_on = [module.vpc, google_compute_address.service_server_ip]
 }
 
 ## Compute Engine ##(gitlab)
 
 resource "google_compute_disk" "git_data_disk" {
-  name  = "git-data-disk"
-  type  = "pd-balanced"
-  size  = 500
-  zone  = "${var.region}-a"
+  name = "git-data-disk"
+  type = "pd-balanced"
+  size = 500
+  zone = "${var.region}-a"
 }
 
 resource "google_compute_disk" "lfs_objects_disk" {
-  name  = "lfs-objects-disk"
-  type  = "pd-balanced"
-  size  = 500
-  zone  = "${var.region}-a"
+  name = "lfs-objects-disk"
+  type = "pd-balanced"
+  size = 500
+  zone = "${var.region}-a"
 }
 
 resource "google_compute_disk" "backups_disk" {
-  name  = "backups-disk"
-  type  = "pd-balanced"
-  size  = 1000
-  zone  = "${var.region}-a"
+  name = "backups-disk"
+  type = "pd-balanced"
+  size = 1000
+  zone = "${var.region}-a"
 }
 
 resource "google_compute_address" "gitlab_server_ip" {
@@ -210,15 +198,6 @@ resource "google_compute_address" "gitlab_server_ip" {
 }
 
 resource "google_compute_instance" "gitlab_server" {
-  depends_on = [
-    module.vpc,
-    google_compute_address.gitlab_server_ip,
-    google_compute_disk.git_data_disk,
-    google_compute_disk.lfs_objects_disk,
-    google_compute_disk.backups_disk    
-  
-  ]
-
   name                      = var.gitlab_server
   machine_type              = "n2-standard-2"
   labels                    = local.default_labels
@@ -282,4 +261,11 @@ resource "google_compute_instance" "gitlab_server" {
     }
   }
 
+  depends_on = [
+    module.vpc,
+    google_compute_address.gitlab_server_ip,
+    google_compute_disk.git_data_disk,
+    google_compute_disk.lfs_objects_disk,
+    google_compute_disk.backups_disk
+  ]
 }

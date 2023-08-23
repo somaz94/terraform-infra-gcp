@@ -13,19 +13,19 @@ provider "kubernetes" {
 }
 
 module "gke_autopilot" {
-  source                            = "../../modules/gke_autopilot"
-  project_id                        = var.project
-  network_project_id                = var.project
-  cluster_resource_labels           = local.default_labels
-  name                              = var.mgmt_gke
-  region                            = var.region
-  zones                             = ["${var.region}-a", "${var.region}-b"]
-  network                           = var.shared_vpc
-  subnetwork                        = "${var.subnet_share}-mgmt-a"
-  ip_range_pods                     = "mgmt-somaz-gke-pod"
-  ip_range_services                 = "mgmt-somaz-gke-service"
-  enable_cost_allocation            = false # Enables Cost Allocation Feature and the cluster name and namespace of your GKE workloads appear in the labels field of the billing export to BigQuery
-  grant_registry_access             = true
+  source                  = "../../modules/gke_autopilot"
+  project_id              = var.project
+  network_project_id      = var.project
+  cluster_resource_labels = local.default_labels
+  name                    = var.mgmt_somaz_gke
+  region                  = var.region
+  zones                   = ["${var.region}-a", "${var.region}-b"]
+  network                 = var.shared_vpc
+  subnetwork              = "${var.subnet_share}-mgmt-a"
+  ip_range_pods           = "mgmt-somaz-gke-pod"
+  ip_range_services       = "mgmt-somaz-gke-service"
+  enable_cost_allocation  = false # Enables Cost Allocation Feature and the cluster name and namespace of your GKE workloads appear in the labels field of the billing export to BigQuery
+  grant_registry_access   = true
   # service_account                   = var.admin_service_account
   add_cluster_firewall_rules        = true
   add_master_webhook_firewall_rules = true
