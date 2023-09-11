@@ -74,3 +74,20 @@ somaz_link_lb_ip_name = "dev-somaz-link-cdn-lb-ip"
 
 ## Cloud Armor ##
 ip_allow_rule_name = "ip-allow-rule"
+
+## Firestore Instance ##
+firestore_instances = {
+  nfs1 = {
+    instance_name          = "dev1-somaz-firestore"
+    file_share_name        = "dev1"
+    file_share_capacity_gb = 2560
+    file_share_ip_ranges   = ["10.0.0.0/8"]
+  }
+  nfs2 = {
+    instance_name          = "dev2-somaz-firestore"
+    file_share_name        = "dev2"
+    file_share_capacity_gb = 2560
+    file_share_ip_ranges   = ["10.0.0.0/8"]
+  }
+  # Add more instances as needed
+}

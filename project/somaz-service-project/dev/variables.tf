@@ -67,3 +67,15 @@ variable "somaz_link_lb_ip_name" {}
 
 ## Cloud Armor ##
 variable "ip_allow_rule_name" {}
+
+## Firestore Instance ##
+variable "firestore_instances" {
+  description = "A map of Filestore instances with their file shares configurations."
+  type = map(object({
+    instance_name          = string
+    file_share_name        = string
+    file_share_capacity_gb = number
+    file_share_ip_ranges   = list(string)
+  }))
+  # Provide default values or define the variable in a tfvars file
+}
