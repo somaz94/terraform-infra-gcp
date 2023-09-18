@@ -29,7 +29,7 @@ This repository contains the configuration files and modules to set up and manag
 - [service_accounts](https://github.com/terraform-google-modules/terraform-google-service-accounts)
 - [workload_identity_federation](https://github.com/mscribellito/terraform-google-workload-identity-federation)
 
-## Contributing
+## 👨‍👩‍👦‍👧 Contributing
 Contributions to enhance and improve this repository are always welcome. Please follow the standard Git workflow:
 
 1. Fork the repository.
