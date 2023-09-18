@@ -1,7 +1,7 @@
-# terraform-infra-gcp
+# terraform-infra-gcp 🚀
 This repository contains the configuration files and modules to set up and manage infrastructure on Google Cloud Platform (GCP) using Terraform.
 
-## Directory Structure
+## ⛄ Directory Structure 
 📁 key: Contains service account keys, public keys, and other authentication-related files.
 - *.json: Service account keys for various projects and services.
 - *.pub: Public SSH keys for various services.
@@ -13,10 +13,10 @@ This repository contains the configuration files and modules to set up and manag
 - somaz-service-project: Infrastructure setup for the service project (dev, prod, and qa environments).
 - somaz-host-project: Infrastructure setup for the host project.
 
-## Architecture
+## 🪂 Architecture
 ![architecture](https://github.com/somaz94/terraform-infra-gcp/assets/112675579/a7b5b1b8-82b9-4dff-b031-b7f0f5c8d2b2)
 
-## Reference(Module)
+## 🌐 Reference(Module)
 - [cloud_armor](https://github.com/GoogleCloudPlatform/terraform-google-cloud-armor)
 - [gcs_buckets](https://github.com/terraform-google-modules/terraform-google-cloud-storage)
 - [gke_autopilot](https://github.com/terraform-google-modules/terraform-google-kubernetes-engine/tree/master/modules/beta-autopilot-public-cluster)
