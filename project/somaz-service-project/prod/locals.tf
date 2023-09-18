@@ -5,14 +5,18 @@ locals {
     terraform   = var.terraform
   }
 
-  default_map_labels = {
-    environment = {
-      key1 = var.environment
-    },
-    terraform = {
-      key2 = var.terraform
-    }
-  }
+  default_map_labels = merge(
+    {
+      "${var.db_secret}" = {
+        environment = var.environment
+        terraform   = var.terraform
+        },
+      "${var.gcs_cloudcdn}" = {
+        environment = var.environment
+        terraform   = var.terraform
+        }      
+      }
+    )
 
   buckets_versioning = {
     "${var.tf_state_bucket}" = true

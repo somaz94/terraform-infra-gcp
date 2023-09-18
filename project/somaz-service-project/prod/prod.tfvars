@@ -22,9 +22,9 @@ username                           = "admin"
 password                           = "somaz"
 bastion_user                       = "somaz"
 bastion_pem_key                    = "../../../key/somaz-bastion.pub"
-gcs_cloudfront                     = "somaz-gcs-cloudfront"
-gcs_cloudfront_service_account     = "somaz-gcs-cloudfront@somaz-host-project.iam.gserviceaccount.com"
-gcs_cloudfront_service_account_key = "../../../key/somaz-gcs-cloudfront.json"
+gcs_cloudcdn                       = "somaz-gcs_cloudcdn"
+gcs_cloudcdn_service_account       = "somaz-gcs_cloudcdn@somaz-host-project.iam.gserviceaccount.com"
+gcs_cloudcdn_service_account_key   = "../../../key/somaz-gcs-cloudcdn.json"
 
 ## vpc ##
 shared_vpc           = "prod-mgmt-share-vpc"

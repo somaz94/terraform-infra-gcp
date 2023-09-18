@@ -17,11 +17,11 @@ module "secret_manager" {
       })
     },
     {
-      name                  = var.gcs_cloudfront
+      name                  = var.gcs_cloudcdn
       automatic_replication = true
       secret_data = jsonencode({
-        service-account     = var.gcs_cloudfront_service_account
-        service-account-key = "${trimspace(file(var.gcs_cloudfront_service_account_key))}"
+        service-account     = var.gcs_cloudcdn_service_account
+        service-account-key = "${trimspace(file(var.gcs_cloudcdn_service_account_key))}"
       })
     }
   ]

@@ -25,9 +25,9 @@ variable "username" {}
 variable "password" {}
 variable "bastion_user" {}
 variable "bastion_pem_key" {}
-variable "gcs_cloudfront" {}
-variable "gcs_cloudfront_service_account" {}
-variable "gcs_cloudfront_service_account_key" {}
+variable "gcs_cloudcdn" {}
+variable "gcs_cloudcdn_service_account" {}
+variable "gcs_cloudcdn_service_account_key" {}
 
 
 ## vpc ##
