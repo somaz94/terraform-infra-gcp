@@ -1,4 +1,4 @@
-# terraform-infra-gcp 🚀
+# terraform-infra-gcp ![Terraform](https://img.shields.io/badge/-Terraform-623CE4?style=flat-square&logo=terraform&logoColor=white)![Ansible](https://img.shields.io/badge/-Ansible-EE0000?style=flat-square&logo=ansible&logoColor=white)
 This repository contains the configuration files and modules to set up and manage infrastructure on Google Cloud Platform (GCP) using Terraform.
 
 ## ⛄ Directory Structure 
