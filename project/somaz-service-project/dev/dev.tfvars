@@ -21,9 +21,9 @@ username                           = "admin"
 password                           = "somaz"
 bastion_user                       = "somaz"
 bastion_pem_key                    = "../../../key/somaz-bastion.pub"
-gcs_cloudfront                     = "somaz-gcs-cloudfront"
-gcs_cloudfront_service_account     = "somaz-gcs-cloudfront@somaz-host-project.iam.gserviceaccount.com"
-gcs_cloudfront_service_account_key = "../../../key/somaz-gcs-cloudfront.json"
+gcs_cloudcdn                       = "somaz-gcs_cloudcdn"
+gcs_cloudcdn_service_account       = "somaz-gcs_cloudcdn@somaz-host-project.iam.gserviceaccount.com"
+gcs_cloudcdn_service_account_key   = "../../../key/somaz-gcs-cloudcdn.json"
 
 ## vpc ##
 shared_vpc   = "mgmt-share-vpc"
@@ -74,3 +74,20 @@ somaz_link_lb_ip_name = "dev-somaz-link-cdn-lb-ip"
 
 ## Cloud Armor ##
 ip_allow_rule_name = "ip-allow-rule"
+
+## Firestore Instance ##
+firestore_instances = {
+  nfs1 = {
+    instance_name          = "dev1-somaz-firestore"
+    file_share_name        = "dev1"
+    file_share_capacity_gb = 2560
+    file_share_ip_ranges   = ["10.0.0.0/8"]
+  }
+  nfs2 = {
+    instance_name          = "dev2-somaz-firestore"
+    file_share_name        = "dev2"
+    file_share_capacity_gb = 2560
+    file_share_ip_ranges   = ["10.0.0.0/8"]
+  }
+  # Add more instances as needed
+}
