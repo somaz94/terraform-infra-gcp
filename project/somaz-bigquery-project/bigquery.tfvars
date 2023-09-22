@@ -7,3 +7,7 @@ terraform    = "true"
 
 ## terraform tfstate backend ##
 tf_state_bucket = "somaz-bigquery-project-terraform-remote-tfstate"
+
+## vpc ##
+shared_vpc   = "mgmt-share-vpc"
+subnet_share = "mgmt-share-sub"

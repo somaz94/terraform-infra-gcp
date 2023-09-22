@@ -7,3 +7,7 @@ variable "terraform" {}
 
 ## terraform tfstate backend ##
 variable "tf_state_bucket" {}
+
+## vpc ##
+variable "shared_vpc" {}
+variable "subnet_share" {}
