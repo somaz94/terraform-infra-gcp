@@ -26,6 +26,8 @@ def start_dataflow(request):
 
     for database in databases:
         # Configure the Dataflow job parameters
+        # https://cloud.google.com/dataflow/docs/reference/rest/v1b3/projects.locations.flexTemplates/launch
+        # https://cloud.google.com/dataflow/docs/guides/templates/provided/mongodb-to-bigquery?hl=ko#api
         job_parameters = {
             "launchParameter": {
                 "jobName": f"{database}-to-bigquery-job",
