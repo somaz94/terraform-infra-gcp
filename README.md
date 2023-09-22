@@ -15,7 +15,7 @@ This repository contains the configuration files and modules to set up and manag
 - somaz-bigquery-project: Infrastructure setup for the bigquery project. (mongodb -> bigquery -> google sheet connection)
 
 ## 🪂 Architecture
-![architecture](https://github.com/somaz94/pulumi-study/assets/112675579/8fcc8a17-6213-40fc-8d1d-4b567313b21e)
+![architecture](https://github.com/somaz94/terraform-infra-gcp/assets/112675579/96eda2fd-a2d2-4e8c-ba38-9e2bedfc696c)
 
 ## 🌐 Reference(Module)
 - [cloud_armor](https://github.com/GoogleCloudPlatform/terraform-google-cloud-armor)
