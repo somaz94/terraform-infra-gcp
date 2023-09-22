@@ -169,7 +169,7 @@ resource "google_cloudfunctions_function" "bigquery_googlesheet_function" {
 
   environment_variables = {
     BIGQUERY_TABLE         = "${var.project}.mongodb_dataset.mongodb-internal-table",
-    SHEET_ID               = "115whxBxRBtWAb3a8jS5S3NN1wFMWRUBj5oqYFaXvB_M"
+    SHEET_ID               = "1sfasdfsdRBtsdfasdfsdfsadfsj5oqYFaXvB_M"
   }
 }
 

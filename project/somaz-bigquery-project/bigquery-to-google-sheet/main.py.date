@@ -7,7 +7,7 @@ import logging
 
 MAX_ROWS_PER_BATCH = 1000  # Define the maximum number of rows to process at once.
 
-def bigquery_to_sheets(request, desired_date="2023-06"): # Modify Date(ex.2023-06, 2023-07 ....)
+def bigquery_to_sheets(request, desired_date="2023-06"):  # Modify Date(ex.2023-06, 2023-07 ....)
     try:
         logging.info("Starting bigquery_to_sheets function")
 
@@ -29,7 +29,7 @@ def bigquery_to_sheets(request, desired_date="2023-06"): # Modify Date(ex.2023-0
         logging.info("Connected to Google Sheets")
 
         # Open Google Sheets document
-        sh = gc.open_by_key('115wsdfasdfsadfxRsadfasdasfasfsadfsadfsj5oqYFaXvB_M')
+        sh = gc.open_by_key('sfasfBtsfasdfsadfsdfsdasdfasdoqYFaXvB_M') # Google Sheet ID
 
         for table in tables:
             table_id = table.table_id
@@ -43,14 +43,8 @@ def bigquery_to_sheets(request, desired_date="2023-06"): # Modify Date(ex.2023-0
                 # Fetch data for that specific date
                 date_filter = f"DATE(PARSE_TIMESTAMP('%a %b %d %H:%M:%S UTC %Y', time)) = '{desired_date}'"
 
-            # Filter for the 'reason' column
-            reason_filter = "(reason = '/login' OR reason = '/login/unity')"
-
-            # Combine date and reason filters
-            combined_filter = f"{date_filter} AND {reason_filter}"
-
-            # Calculate the total number of rows in the table for the desired date and reason
-            total_rows_query = f"SELECT COUNT(*) FROM `{dataset_id}.{table_id}` WHERE {combined_filter}"
+            # Calculate the total number of rows in the table for the desired date
+            total_rows_query = f"SELECT COUNT(*) FROM `{dataset_id}.{table_id}` WHERE {date_filter}"
             total_rows = client.query(total_rows_query).result().to_dataframe().iloc[0, 0]
 
             # Calculate the number of batches
@@ -69,7 +63,7 @@ def bigquery_to_sheets(request, desired_date="2023-06"): # Modify Date(ex.2023-0
 
             for batch_num in range(num_batches):
                 offset = batch_num * MAX_ROWS_PER_BATCH
-                query = f"SELECT * FROM `{dataset_id}.{table_id}` WHERE {combined_filter} LIMIT {MAX_ROWS_PER_BATCH} OFFSET {offset}"
+                query = f"SELECT * FROM `{dataset_id}.{table_id}` WHERE {date_filter} LIMIT {MAX_ROWS_PER_BATCH} OFFSET {offset}"
                 rows = client.query(query).result()
 
                 batch_data = []
@@ -91,3 +85,4 @@ def bigquery_to_sheets(request, desired_date="2023-06"): # Modify Date(ex.2023-0
     except Exception as e:
         logging.error(f"Error occurred: {e}")
         raise e
+
