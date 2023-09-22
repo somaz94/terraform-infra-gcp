@@ -1,0 +1,57 @@
+import os
+import gspread
+import datetime
+from google.cloud import bigquery
+from oauth2client.service_account import ServiceAccountCredentials
+import logging
+
+def bigquery_to_sheets(request):
+    try:
+        logging.info("Starting bigquery_to_sheets function")
+
+        # BigQuery setup
+        client = bigquery.Client()
+        table_id = os.environ.get('BIGQUERY_TABLE', 'somaz-bigquery-project.mongodb_dataset.mongodb-internal-table') # <project>.<dataset>.<dataset-table>
+
+        # Fetch data
+        query = f"SELECT * FROM `{table_id}`"
+        rows = client.query(query).result()
+
+        if not rows:
+            logging.warning("No data fetched from BigQuery.")
+            return "No data fetched from BigQuery.", 400
+        logging.info("Data fetched from BigQuery.")
+
+        # Connect to Google Sheets
+        scopes = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+        # Consider using an absolute path for your key
+        creds = ServiceAccountCredentials.from_json_keyfile_name('bigquery.json', scopes)
+        gc = gspread.authorize(creds)
+        logging.info("Connected to Google Sheets")
+
+        # Open Google Sheets document
+        sh = gc.open_by_key('115whxBxRBtWAb3a8jS5S3NN1XDFDAFsddfBj5oqYFaXvB_M') # Google Sheet ID
+        worksheet = sh.get_worksheet(0)
+
+        # Add schema (column names) to Google Sheets before the data
+        schema = [field.name for field in client.get_table(table_id).schema]
+        all_data = [schema]
+        for row in rows:
+            row_data = []
+            for item in row.values():
+                # Convert datetime objects to strings
+                if isinstance(item, datetime.datetime):
+                    row_data.append(item.strftime('%Y-%m-%d %H:%M:%S'))  # Modify the format as needed
+                else:
+                    row_data.append(item)
+            all_data.append(row_data)
+
+        # Use batch update for better performance
+        worksheet.append_rows(all_data)
+
+        logging.info("Data synced to Google Sheets!")
+        return "Data synced to Google Sheets!", 200
+
+    except Exception as e:
+        logging.error(f"Error occurred: {e}")
+        raise e

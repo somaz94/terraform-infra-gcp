@@ -1,0 +1,92 @@
+{
+  "image": "gcr.io/dataflow-templates/2023-08-29-00_rc00/mongodb-to-bigquery",
+  "metadata": {
+    "name": "MongoDB to BigQuery",
+    "description": "A batch pipeline which reads data documents from MongoDB and writes them to BigQuery.",
+    "parameters": [
+      {
+        "name": "mongoDbUri",
+        "label": "MongoDB Connection URI",
+        "helpText": "URI to connect to MongoDB Atlas.",
+        "paramType": "TEXT"
+      },
+      {
+        "name": "database",
+        "label": "Mongo database",
+        "helpText": "Database in MongoDB to read the collection from. Example: my-db.",
+        "paramType": "TEXT"
+      },
+      {
+        "name": "collection",
+        "label": "Mongo collection",
+        "helpText": "Name of the collection inside MongoDB database. Example: my-collection.",
+        "paramType": "TEXT"
+      },
+      {
+        "name": "outputTableSpec",
+        "label": "BigQuery destination table",
+        "helpText": "BigQuery destination table spec. Example: bigquery-project:dataset.output_table.",
+        "paramType": "BIGQUERY_TABLE"
+      },
+      {
+        "name": "userOption",
+        "label": "User option",
+        "helpText": "User option: FLATTEN or NONE. FLATTEN will flatten the documents for 1 level. NONE will store the whole document as json string.",
+        "regexes": [
+          "^(FLATTEN|NONE)$"
+        ],
+        "paramType": "TEXT"
+      },
+      {
+        "name": "useStorageWriteApi",
+        "label": "Use BigQuery Storage Write API",
+        "helpText": "If enabled (set to true) the pipeline will use Storage Write API when writing the data to BigQuery (see https://cloud.google.com/blog/products/data-analytics/streaming-data-into-bigquery-using-storage-write-api).",
+        "isOptional": true,
+        "regexes": [
+          "^(true|false)$"
+        ],
+        "paramType": "TEXT"
+      },
+      {
+        "name": "useStorageWriteApiAtLeastOnce",
+        "label": "Use at at-least-once semantics in BigQuery Storage Write API",
+        "helpText": "This parameter takes effect only if \"Use BigQuery Storage Write API\" is enabled. If enabled the at-least-once semantics will be used for Storage Write API, otherwise exactly-once semantics will be used.",
+        "isOptional": true,
+        "regexes": [
+          "^(true|false)$"
+        ],
+        "paramType": "TEXT"
+      },
+      {
+        "name": "javascriptDocumentTransformGcsPath",
+        "label": "Cloud Storage location of your JavaScript UDF",
+        "helpText": "The full URL of your .js file. Example: gs://your-bucket/your-function.js",
+        "isOptional": true,
+        "regexes": [
+          "^gs:\\/\\/[^\\n\\r]+$"
+        ],
+        "paramType": "JAVASCRIPT_UDF_FILE"
+      },
+      {
+        "name": "javascriptDocumentTransformFunctionName",
+        "label": "The name of the JavaScript function you wish to call as your UDF",
+        "helpText": "The function name should only contain letters, digits and underscores. Example: 'transform' or 'transform_udf1'.",
+        "isOptional": true,
+        "regexes": [
+          "[a-zA-Z0-9_]+"
+        ],
+        "paramType": "TEXT"
+      }
+    ]
+  },
+  "sdkInfo": {
+    "language": "JAVA"
+  },
+  "defaultEnvironment": {
+    "additionalUserLabels": {
+      "goog-dataflow-provided-template-type": "flex",
+      "goog-dataflow-provided-template-name": "mongodb_to_bigquery",
+      "goog-dataflow-provided-template-version": "2023-08-29-00_rc00"
+    }
+  }
+}

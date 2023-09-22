@@ -1,0 +1,57 @@
+import os
+from googleapiclient.discovery import build
+from oauth2client.client import GoogleCredentials
+from flask import jsonify
+
+def start_dataflow(request):
+    # An HTTP request is a Flask Request object, allowing for use of its methods to inspect request data.
+    # Modify this part if a different request method or data reception via POST is desired.
+
+    # Retrieve environment variables
+    PROJECT_ID = os.environ.get('PROJECT_ID')
+    REGION = os.environ.get('REGION')
+    SHARED_VPC = os.environ.get('SHARED_VPC')
+    SUBNET_SHARE = os.environ.get('SUBNET_SHARE')
+    SERVICE_ACCOUNT_EMAIL = os.environ.get('SERVICE_ACCOUNT_EMAIL')
+
+    # Initialize authentication for Google Cloud SDK
+    credentials = GoogleCredentials.get_application_default()
+
+    # Create API client for the Dataflow service
+    service = build('dataflow', 'v1b3', credentials=credentials)
+
+    # Set up parameters for the Dataflow job
+    job_parameters = {
+        "launchParameter": {
+            "jobName": "mongodb-to-bigquery-job",
+            "parameters": {
+                "mongoDbUri": "mongodb://mongo:somaz@44.44.44.444:27017", # mongodb://<id>:<pw>@<ip>:<port>
+                "database": "dev2",
+                "collection": "mongologs",
+                "outputTableSpec": f"{PROJECT_ID}:mongodb_dataset.mongodb-internal-table",
+                "userOption": "FLATTEN"
+            },
+            "environment": {
+                "tempLocation": "gs://mongodb-cloud-function-storage/tmp",
+                "network": SHARED_VPC,
+                "subnetwork": f"regions/{REGION}/subnetworks/{SUBNET_SHARE}-mgmt-b",
+                "serviceAccountEmail": SERVICE_ACCOUNT_EMAIL
+            },
+            "containerSpecGcsPath": 'gs://dataflow-templates/2023-08-29-00_RC00/flex/MongoDB_to_BigQuery'
+        }
+    }
+
+    # Handle potential errors
+    try:
+        # Initiate the Dataflow job
+        request = service.projects().locations().flexTemplates().launch(
+            projectId=PROJECT_ID,
+            location=REGION,
+            body=job_parameters
+        )
+        response = request.execute()
+        return jsonify(response)
+
+    except Exception as e:
+        print(f"Error occurred: {e}")
+        return jsonify({"error": str(e)}), 500

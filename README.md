@@ -12,9 +12,10 @@ This repository contains the configuration files and modules to set up and manag
 📁 project: Configuration files specific to projects.
 - somaz-service-project: Infrastructure setup for the service project (dev, prod, and qa environments).
 - somaz-host-project: Infrastructure setup for the host project.
+- somaz-bigquery-project: Infrastructure setup for the bigquery project. (mongodb -> bigquery -> google sheet connection)
 
 ## 🪂 Architecture
-![architecture](https://github.com/somaz94/terraform-infra-gcp/assets/112675579/a7b5b1b8-82b9-4dff-b031-b7f0f5c8d2b2)
+![architecture](https://github.com/somaz94/pulumi-study/assets/112675579/8fcc8a17-6213-40fc-8d1d-4b567313b21e)
 
 ## 🌐 Reference(Module)
 - [cloud_armor](https://github.com/GoogleCloudPlatform/terraform-google-cloud-armor)
