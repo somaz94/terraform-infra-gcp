@@ -26,7 +26,7 @@ def start_dataflow(request):
             "jobName": "mongodb-to-bigquery-job",
             "parameters": {
                 "mongoDbUri": "mongodb://mongo:somaz@44.44.44.444:27017", # mongodb://<id>:<pw>@<ip>:<port>
-                "database": "dev2",
+                "database": "dev1",
                 "collection": "mongologs",
                 "outputTableSpec": f"{PROJECT_ID}:mongodb_dataset.mongodb-internal-table",
                 "userOption": "FLATTEN"
