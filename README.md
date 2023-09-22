@@ -17,6 +17,9 @@ This repository contains the configuration files and modules to set up and manag
 ## 🪂 Architecture
 ![architecture](https://github.com/somaz94/terraform-infra-gcp/assets/112675579/96eda2fd-a2d2-4e8c-ba38-9e2bedfc696c)
 
+## 📊 Bigquery Workflow
+![bigquery workflow](https://github.com/somaz94/terraform-infra-gcp/assets/112675579/f4950bc3-237e-40d0-8539-6bc8e28ee249)
+
 ## 🌐 Reference(Module)
 - [cloud_armor](https://github.com/GoogleCloudPlatform/terraform-google-cloud-armor)
 - [gcs_buckets](https://github.com/terraform-google-modules/terraform-google-cloud-storage)
