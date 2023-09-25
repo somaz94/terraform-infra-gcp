@@ -12,11 +12,11 @@ module "gcs_buckets" {
 
 # CORS Settings
 resource "google_storage_bucket" "asset_somaz_link" {
-  name     = var.asset_somaz_link
-  location = var.region
+  name                        = var.asset_somaz_link
+  location                    = var.region
   uniform_bucket_level_access = true
   storage_class               = "STANDARD"
-  labels   = local.default_labels
+  labels                      = local.default_labels
   cors {
     origin          = ["*"]
     method          = ["GET", "POST"]

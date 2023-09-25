@@ -14,16 +14,16 @@ somaz_link               = "dev.somaz.link"
 asset_somaz_link_members = ["user:somaz@somaz.link", "user:somazx@somaz.link"]
 
 ## secret_manager ##
-db_secret                          = "dev-somaz-database"
-db_username                        = "admin"
-db_password                        = "somaz"
-username                           = "admin"
-password                           = "somaz"
-bastion_user                       = "somaz"
-bastion_pem_key                    = "../../../key/somaz-bastion.pub"
-gcs_cloudcdn                       = "somaz-gcs_cloudcdn"
-gcs_cloudcdn_service_account       = "somaz-gcs_cloudcdn@somaz-host-project.iam.gserviceaccount.com"
-gcs_cloudcdn_service_account_key   = "../../../key/somaz-gcs-cloudcdn.json"
+db_secret                        = "dev-somaz-database"
+db_username                      = "admin"
+db_password                      = "somaz"
+username                         = "admin"
+password                         = "somaz"
+bastion_user                     = "somaz"
+bastion_pem_key                  = "../../../key/somaz-bastion.pub"
+gcs_cloudcdn                     = "somaz-gcs_cloudcdn"
+gcs_cloudcdn_service_account     = "somaz-gcs_cloudcdn@somaz-host-project.iam.gserviceaccount.com"
+gcs_cloudcdn_service_account_key = "../../../key/somaz-gcs-cloudcdn.json"
 
 ## vpc ##
 shared_vpc   = "mgmt-share-vpc"

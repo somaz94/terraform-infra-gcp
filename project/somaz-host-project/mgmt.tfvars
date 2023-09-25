@@ -66,8 +66,8 @@ mongo_log_lb_ip_name  = "mgmt-somaz-mongo-log-lb-ip"
 blockchain_lb_ip_name = "mgmt-somaz-blockchain-lb-ip"
 
 ## Artifact Registry ##
-somaz_repo       = ["somaz-web", "somaz-game", "somaz-was"]
-prod_somaz_repo  = ["somaz-web", "somaz-game", "somaz-was"]
+somaz_repo      = ["somaz-web", "somaz-game", "somaz-was"]
+prod_somaz_repo = ["somaz-web", "somaz-game", "somaz-was"]
 
 # gitlab
 gitlab_server_lb_ip_name = "mgmt-gitlab-server-lb-ip"

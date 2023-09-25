@@ -37,12 +37,12 @@ resource "google_bigquery_dataset" "mongodb_dataset" {
 
   access {
     role          = "OWNER"
-    user_by_email = module.service_accounts_bigquery.email    # bigquery admin account
+    user_by_email = module.service_accounts_bigquery.email # bigquery admin account
   }
 
   access {
     role          = "OWNER"
-    user_by_email = "admin-bigquery@somaz-bigquery-project.iam.gserviceaccount.com"  # terraform admin account
+    user_by_email = "admin-bigquery@somaz-bigquery-project.iam.gserviceaccount.com" # terraform admin account
   }
 }
 
@@ -76,18 +76,18 @@ resource "null_resource" "mongodb_bigquery_zip_cloud_function" {
 resource "google_storage_bucket_object" "mongodb_bigquery_cloudfunction_archive" {
   depends_on = [null_resource.mongodb_bigquery_zip_cloud_function]
 
-  name       = "source/mongodb-to-bigquery.zip"
-  bucket     = google_storage_bucket.mongodb_cloud_function_storage.name
-  source     = "./mongodb-to-bigquery/mongodb-to-bigquery.zip"
+  name   = "source/mongodb-to-bigquery.zip"
+  bucket = google_storage_bucket.mongodb_cloud_function_storage.name
+  source = "./mongodb-to-bigquery/mongodb-to-bigquery.zip"
 }
 
 ## cloud_function
 resource "google_cloudfunctions_function" "mongodb_bigquery_dataflow_function" {
-  depends_on  = [null_resource.mongodb_bigquery_zip_cloud_function, google_storage_bucket_object.mongodb_bigquery_cloudfunction_archive]
+  depends_on = [null_resource.mongodb_bigquery_zip_cloud_function, google_storage_bucket_object.mongodb_bigquery_cloudfunction_archive]
 
-  name        = "mongodb-to-bigquery-dataflow"
-  description = "Function to mongodb-to-bigquery the Dataflow job"
-  runtime     = "python38"
+  name                  = "mongodb-to-bigquery-dataflow"
+  description           = "Function to mongodb-to-bigquery the Dataflow job"
+  runtime               = "python38"
   service_account_email = module.service_accounts_bigquery.email
   docker_registry       = "ARTIFACT_REGISTRY"
   timeout               = 540
@@ -110,13 +110,13 @@ resource "google_cloudfunctions_function" "mongodb_bigquery_dataflow_function" {
 ## cloud_scheduler
 resource "google_cloud_scheduler_job" "mongodb_bigquery_job" {
   depends_on = [google_cloudfunctions_function.mongodb_bigquery_dataflow_function]
-  name     = "mongodb-to-bigquery-daily-job"
-  region   = var.region
-  schedule = "0 9 * * *"
+  name       = "mongodb-to-bigquery-daily-job"
+  region     = var.region
+  schedule   = "0 9 * * *"
 
   http_target {
     http_method = "POST"
-    uri        = google_cloudfunctions_function.mongodb_bigquery_dataflow_function.https_trigger_url
+    uri         = google_cloudfunctions_function.mongodb_bigquery_dataflow_function.https_trigger_url
     oidc_token {
       service_account_email = module.service_accounts_bigquery.email
     }
@@ -135,17 +135,17 @@ resource "null_resource" "bigquery_googlesheet_zip_cloud_function" {
   }
 
   triggers = {
-    main_content_hash        = filesha256("./bigquery-to-google-sheet/main.py")
+    main_content_hash         = filesha256("./bigquery-to-google-sheet/main.py")
     requirements_content_hash = filesha256("./bigquery-to-google-sheet/requirements.txt")
   }
 }
 
 resource "google_storage_bucket_object" "bigquery_googlesheet_cloudfunction_archive" {
   depends_on = [null_resource.bigquery_googlesheet_zip_cloud_function]
-  
-  name       = "source/bigquery-to-google-sheet.zip"
-  bucket     = google_storage_bucket.mongodb_cloud_function_storage.name
-  source     = "./bigquery-to-google-sheet/bigquery-to-google-sheet.zip"
+
+  name   = "source/bigquery-to-google-sheet.zip"
+  bucket = google_storage_bucket.mongodb_cloud_function_storage.name
+  source = "./bigquery-to-google-sheet/bigquery-to-google-sheet.zip"
 }
 
 
@@ -162,14 +162,14 @@ resource "google_cloudfunctions_function" "bigquery_googlesheet_function" {
   timeout               = 540
 
   # Set the source_directory property here.
-  source_archive_bucket        = google_storage_bucket.mongodb_cloud_function_storage.name
-  source_archive_object        = google_storage_bucket_object.bigquery_googlesheet_cloudfunction_archive.name
-  trigger_http      = true
-  entry_point       = "bigquery_to_sheets"  # Function name inside the Python code
+  source_archive_bucket = google_storage_bucket.mongodb_cloud_function_storage.name
+  source_archive_object = google_storage_bucket_object.bigquery_googlesheet_cloudfunction_archive.name
+  trigger_http          = true
+  entry_point           = "bigquery_to_sheets" # Function name inside the Python code
 
   environment_variables = {
-    BIGQUERY_TABLE         = "${var.project}.mongodb_dataset.mongodb-internal-table",
-    SHEET_ID               = "1sfasdfsdRBtsdfasdfsdfsadfsj5oqYFaXvB_M"
+    BIGQUERY_TABLE = "${var.project}.mongodb_dataset.mongodb-internal-table",
+    SHEET_ID       = "1sfasdfsdRBtsdfasdfsdfsadfsj5oqYFaXvB_M"
   }
 }
 
@@ -182,7 +182,7 @@ resource "google_cloud_scheduler_job" "bigquery_googlesheet_job" {
   schedule = "0 9 * * *"
 
   http_target {
-    uri = google_cloudfunctions_function.bigquery_googlesheet_function.https_trigger_url
+    uri         = google_cloudfunctions_function.bigquery_googlesheet_function.https_trigger_url
     http_method = "GET"
   }
 }
