@@ -11,7 +11,7 @@ This directory holds Terraform configurations specifically designed for the Prod
 - **cloud-dns-lb-ip.tf**: Dedicated configurations for Google Cloud DNS and the load balancer IP resources.
 - **cloud-storage.tf**: Manages Google Cloud Storage, offering a reliable and scalable space for cloud-based storage needs.
 - **compute-engine.tf**: Holds Terraform configurations related to Google Compute Engine, enabling the provisioning of virtual machines and associated resources.
-- **db-redis.tf**: Specific configurations for the Redis database on Google Cloud, detailing its setup, maintenance, and optimizations.
+- **db-redis.tf**: Configurations related to Redis and databases.
 - **kubernetes-engine.tf**: The primary configurations for Google Kubernetes Engine, enabling scalable and manageable container orchestration.
 - **locals.tf**: Houses the definitions of local variables used internally across the Terraform scripts in this directory.
 - **provider.tf**: Defines the provider configurations, primarily for communication between Terraform and Google Cloud Platform.

@@ -13,7 +13,7 @@ This directory contains Terraform configurations tailored for the development en
 - **cloud-storage.tf**: Terraform configurations for setting up and managing Google Cloud Storage resources.
 - **compute-engine.tf**: Terraform configurations for Google Compute Engine resources, which include virtual machine instances and related resources.
 - **custom-iam.tf**: Configurations related to custom IAM roles and permissions.
-- **db-redis.tf**: Terraform configurations related to Redis database setup on Google Cloud.
+- **db-redis.tf**: Configurations related to Redis and databases.
 - **firestore-instance.tf**: Configurations for Firestore database instances.
 - **kubernetes-engine.tf**: Contains the main Terraform configurations for managing Google Kubernetes Engine resources.
 - **locals.tf**: Defines local variables which can be used across various Terraform configurations within this directory.
