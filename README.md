@@ -1,24 +1,32 @@
 # terraform-infra-gcp 🚀
 This repository contains the configuration files and modules to set up and manage infrastructure on Google Cloud Platform (GCP) using Terraform.
 
-## ⛄ Directory Structure 
-📁 key: Contains service account keys, public keys, and other authentication-related files.
-- *.json: Service account keys for various projects and services.
-- *.pub: Public SSH keys for various services.
+<br/><br/>
 
-📁 modules: Reusable Terraform modules.
-- cloud_armor, gcs_buckets, ... : Various Terraform modules for creating and managing different GCP resources.
+## Directory Structure
+📁 **key** : Contains service account keys, public keys, and other authentication-related files.
+- `*.json` : Service account keys for various projects and services.
+- `*.pub` : Public SSH keys for various services.
 
-📁 project: Configuration files specific to projects.
-- somaz-service-project: Infrastructure setup for the service project (dev, prod, and qa environments).
-- somaz-host-project: Infrastructure setup for the host project.
-- somaz-bigquery-project: Infrastructure setup for the bigquery project. (mongodb -> bigquery -> google sheet connection)
+📁 **modules**: Reusable Terraform modules.
+- `cloud_armor, gcs_buckets, ...` : Various Terraform modules for creating and managing different GCP resources.
+
+📁 **project** : Configuration files specific to projects.
+- `somaz-service-project` : Infrastructure setup for the service project (dev, prod, and qa environments).
+- `somaz-host-project` : Infrastructure setup for the host project.
+- `somaz-bigquery-project` : Infrastructure setup for the bigquery project. (mongodb -> bigquery -> google sheet connection)
+
+<br/><br/>
 
 ## 🪂 Architecture
 ![architecture](https://github.com/somaz94/terraform-infra-gcp/assets/112675579/96eda2fd-a2d2-4e8c-ba38-9e2bedfc696c)
 
+<br/><br/>
+
 ## 📊 Bigquery Workflow
 ![bigquery_workflow](https://github.com/somaz94/terraform-infra-gcp/assets/112675579/ce735fcf-4ff5-4fed-a1c0-b23a88a3044e)
+
+<br/><br/>
 
 ## 🌐 Reference(Module)
 - [cloud_armor](https://github.com/GoogleCloudPlatform/terraform-google-cloud-armor)
