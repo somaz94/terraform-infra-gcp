@@ -8,7 +8,7 @@ This `somaz-bigquery-project` directory contains Terraform configurations dedica
 
 - **bigquery-to-google-sheet**: A submodule or collection of Terraform configurations and scripts tailored for exporting data from Google BigQuery to Google Sheets.
 - **mongodb-to-bigquery**: A submodule or collection of Terraform configurations and scripts tailored for importing data from MongoDB to Google BigQuery.
-- **bigquery.tf**: Contains the main Terraform configurations for managing Google BigQuery resources.
+- **mongodb-bigquery-googlesheet-workflow.tf**: Configurations for Google BigQuery and Cloud functions and Cloud Scheduler and Dataflow and DataSet
 - **bigquery.tfvars**: Contains variable definitions and values specific to the BigQuery configurations.
 - **cloud-storage.tf**: Terraform configurations related to setting up and managing Google Cloud Storage resources.
 - **locals.tf**: Defines local variables which can be used across various Terraform configurations within this directory.
