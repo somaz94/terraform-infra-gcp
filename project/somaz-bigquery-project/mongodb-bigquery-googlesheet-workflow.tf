@@ -112,7 +112,7 @@ resource "google_cloud_scheduler_job" "mongodb_bigquery_job" {
   depends_on = [google_cloudfunctions_function.mongodb_bigquery_dataflow_function]
   name       = "mongodb-to-bigquery-daily-job"
   region     = var.region
-  schedule   = "0 15 * * *"   # Daily 15:00 PM
+  schedule   = "0 15 * * *" # Daily 15:00 PM
 
   http_target {
     http_method = "POST"
@@ -179,7 +179,7 @@ resource "google_cloud_scheduler_job" "bigquery_googlesheet_job" {
 
   name     = "bigquery-to-sheet-daliy-job"
   region   = var.region
-  schedule = "30 15 * * *"   # Daily 15:30 PM
+  schedule = "30 15 * * *" # Daily 15:30 PM
 
   http_target {
     http_method = "POST"
