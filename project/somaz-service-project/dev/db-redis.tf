@@ -9,7 +9,7 @@ module "mysql" {
   tier                            = "db-custom-2-3840"
   deletion_protection             = false
   root_password                   = var.db_admin_password
-  availability_type               = "ZONAL"
+  availability_type               = "ZONAL"   # if use HA : REGIONAL
   maintenance_window_day          = "1"
   maintenance_window_hour         = "0"
   maintenance_window_update_track = "stable"
