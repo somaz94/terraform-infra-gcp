@@ -12,7 +12,7 @@ resource "google_compute_backend_bucket" "somaz_link_bucket_backend" {
   bucket_name          = var.somaz_link # replace with your bucket name
   enable_cdn           = true
   edge_security_policy = module.cloud_armor_ip_allow.policy_self_link
-  compression_mode = "AUTOMATIC"  # Compression Mode Settings(AUTOMATIC/DISABLED)
+  compression_mode     = "AUTOMATIC" # Compression Mode Settings(AUTOMATIC/DISABLED)
 
   depends_on = [google_storage_bucket.somaz_link, module.cloud_armor_ip_allow]
 }
@@ -47,10 +47,10 @@ resource "google_compute_managed_ssl_certificate" "asset_cdn_lb_certificate" {
 }
 
 resource "google_compute_backend_bucket" "asset_somaz_link_bucket_backend" {
-  name        = "qa-asset-somaz-link-backend"
-  bucket_name = var.asset_somaz_link # replace with your bucket name
-  enable_cdn  = true
-  compression_mode = "AUTOMATIC"  # Compression Mode Settings(AUTOMATIC/DISABLED)
+  name             = "qa-asset-somaz-link-backend"
+  bucket_name      = var.asset_somaz_link # replace with your bucket name
+  enable_cdn       = true
+  compression_mode = "AUTOMATIC" # Compression Mode Settings(AUTOMATIC/DISABLED)
 
   depends_on = [google_storage_bucket.asset_somaz_link, module.cloud_armor_ip_allow]
 }
