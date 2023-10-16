@@ -43,6 +43,12 @@ This repository contains the configuration files and modules to set up and manag
 
 <br/><br/>
 
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+<br/><br/>
+
 ## 👨‍👩‍👦‍👧 Contributing
 Contributions to enhance and improve this repository are always welcome. Please follow the standard Git workflow:
 
