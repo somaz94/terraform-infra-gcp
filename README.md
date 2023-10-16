@@ -1,7 +1,7 @@
 # terraform-infra-gcp 🚀
 This repository contains the configuration files and modules to set up and manage infrastructure on Google Cloud Platform (GCP) using Terraform.
 
-<br/><br/>
+<br/>
 
 ## Directory Structure
 📁 **key** : Contains service account keys, public keys, and other authentication-related files.
@@ -41,13 +41,13 @@ This repository contains the configuration files and modules to set up and manag
 - [service_accounts](https://github.com/terraform-google-modules/terraform-google-service-accounts)
 - [workload_identity_federation](https://github.com/mscribellito/terraform-google-workload-identity-federation)
 
-<br/><br/>
+<br/>
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-<br/><br/>
+<br/>
 
 ## 👨‍👩‍👦‍👧 Contributing
 Contributions to enhance and improve this repository are always welcome. Please follow the standard Git workflow:
