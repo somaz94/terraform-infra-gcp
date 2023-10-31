@@ -183,7 +183,7 @@ variable "set_storage_admin_roles" {
 }
 
 variable "lifecycle_rules" {
-  type = set(object({
+  type = map(set(object({
     # Object with keys:
     # - type - The type of the action of this Lifecycle Rule. Supported values: Delete and SetStorageClass.
     # - storage_class - (Required if action type is SetStorageClass) The target Storage Class of objects affected by this Lifecycle Rule.
@@ -202,9 +202,9 @@ variable "lifecycle_rules" {
     # - days_since_noncurrent_time - (Optional) Relevant only for versioned objects. Number of days elapsed since the noncurrent timestamp of an object.
     # - noncurrent_time_before - (Optional) Relevant only for versioned objects. The date in RFC 3339 (e.g. 2017-06-13) when the object became nonconcurrent.
     condition = map(string)
-  }))
-  description = "List of lifecycle rules to configure. Format is the same as described in provider documentation https://www.terraform.io/docs/providers/google/r/storage_bucket.html#lifecycle_rule except condition.matches_storage_class should be a comma delimited string."
-  default     = []
+  })))
+  description = "Map of lifecycle rules to configure. Bucket names are keys. Format is the same as described in provider documentation https://www.terraform.io/docs/providers/google/r/storage_bucket.html#lifecycle_rule except condition.matches_storage_class should be a comma delimited string."
+  default     = {}
 }
 
 variable "bucket_lifecycle_rules" {
@@ -231,9 +231,9 @@ variable "bucket_lifecycle_rules" {
 }
 
 variable "cors" {
-  description = "Set of maps of mixed type attributes for CORS values. See appropriate attribute types here: https://www.terraform.io/docs/providers/google/r/storage_bucket.html#cors"
-  type        = set(any)
-  default     = []
+  description = "Map of mixed type attributes for CORS values. See appropriate attribute types here: https://www.terraform.io/docs/providers/google/r/storage_bucket.html#cors"
+  type        = map(any)
+  default     = {}
 }
 
 variable "website" {

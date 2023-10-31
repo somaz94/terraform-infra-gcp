@@ -13,6 +13,15 @@ resource "google_compute_backend_bucket" "somaz_link_bucket_backend" {
   enable_cdn           = true
   edge_security_policy = module.cloud_armor_region_block.policy_self_link
   compression_mode     = "AUTOMATIC" # Compression Mode Settings(AUTOMATIC/DISABLED)
+  custom_response_headers = [
+    "Access-Control-Allow-Origin: *",
+    "Access-Control-Allow-Methods: GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE",
+    "Access-Control-Allow-Headers: *",
+    "Strict-Transport-Security: max-age=31536000",     # Maximum age (max-age): 31536000 (seconds)
+    "X-Content-Type-Options: nosniff",                 # Prevents MIME type sniffing
+    "X-XSS-Protection: 1; mode=block",                 # Enabled, blocking mode
+    "Referrer-Policy: strict-origin-when-cross-origin" # Referrer-Policy setting
+  ]
 
   depends_on = [google_storage_bucket.somaz_link, module.cloud_armor_ip_allow]
 }

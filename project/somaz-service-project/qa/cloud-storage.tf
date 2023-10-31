@@ -6,6 +6,8 @@ module "gcs_buckets" {
   location   = var.region
   labels     = local.default_labels
   versioning = local.buckets_versioning
+  lifecycle_rules = local.lifecycle_rules
+
 }
 
 resource "google_storage_bucket" "asset_somaz_link" {

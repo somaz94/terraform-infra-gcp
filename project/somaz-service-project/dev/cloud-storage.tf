@@ -6,6 +6,7 @@ module "gcs_buckets" {
   location   = var.region
   labels     = local.default_labels
   versioning = local.buckets_versioning
+  lifecycle_rules = local.lifecycle_rules
 
   depends_on = [google_dns_record_set.asset_record]
 }

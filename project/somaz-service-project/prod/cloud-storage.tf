@@ -6,6 +6,7 @@ module "gcs_buckets" {
   location   = var.region
   labels     = local.default_labels
   versioning = local.buckets_versioning
+  lifecycle_rules = local.lifecycle_rules
 }
 
 resource "google_storage_bucket" "asset_somaz_link" {
@@ -21,6 +22,14 @@ resource "google_storage_bucket" "asset_somaz_link" {
     main_page_suffix = "index.html"
     not_found_page   = "404.html"
   }
+
+  cors {
+    origin          = ["*"]
+    method          = ["GET", "POST"]
+    response_header = ["*"]
+    max_age_seconds = 3600
+  }
+
 }
 
 resource "google_storage_bucket_iam_member" "public_read_asset_somaz_link" {
@@ -77,6 +86,14 @@ resource "google_storage_bucket" "stg_somaz_link" {
     main_page_suffix = "index"
     not_found_page   = "404"
   }
+
+  cors {
+    origin          = ["*"]
+    method          = ["GET", "POST"]
+    response_header = ["*"]
+    max_age_seconds = 3600
+  }
+
 }
 
 resource "google_storage_bucket_iam_member" "public_read_stg_somaz_link" {
