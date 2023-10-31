@@ -4,6 +4,7 @@ host_project = "somaz-host-project"
 region       = "asia-northeast1"
 environment  = "prod"
 terraform    = "true"
+organization = "100000000000" # org_id
 
 ## terraform tfstate backend ##
 tf_state_bucket = "somaz-service-project-terraform-remote-tfstate"

@@ -51,6 +51,15 @@ resource "google_storage_bucket_iam_member" "asset_somaz_link_members" {
   depends_on = [google_storage_bucket.asset_somaz_link]
 }
 
+resource "google_project_iam_binding" "asset_somaz_link_list_bucket_permissions" {
+  project = var.project
+  role    = "organizations/${var.organization}/roles/StoragelistRole"
+
+  members = var.asset_somaz_link
+
+  depends_on = [google_storage_bucket.asset_somaz_link]
+}
+
 
 resource "google_storage_bucket" "somaz_link" {
   name                        = var.somaz_link
