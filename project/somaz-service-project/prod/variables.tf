@@ -4,6 +4,7 @@ variable "host_project" {}
 variable "region" {}
 variable "environment" {}
 variable "terraform" {}
+variable "organization" {}
 
 ## terraform tfstate backend ##
 variable "tf_state_bucket" {}
