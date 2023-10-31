@@ -44,7 +44,7 @@ def start_dataflow(request):
                     "subnetwork": f"regions/{REGION}/subnetworks/{SUBNET_SHARE}-mgmt-b",
                     "serviceAccountEmail": SERVICE_ACCOUNT_EMAIL
                 },
-                "containerSpecGcsPath": 'gs://dataflow-templates/2023-08-29-00_RC00/flex/MongoDB_to_BigQuery'
+                "containerSpecGcsPath": 'gs://dataflow-templates/latest/flex/MongoDB_to_BigQuery'
             }
         }
 
