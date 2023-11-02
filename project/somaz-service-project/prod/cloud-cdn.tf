@@ -1,17 +1,17 @@
 ## CDN(somaz_link) ##
 resource "google_compute_managed_ssl_certificate" "cdn_lb_certificate" {
-  name    = "somaz-link-ssl-cert"
+  name = "somaz-link-ssl-cert"
   managed {
     domains = [var.somaz_link]
   }
 }
 
 resource "google_compute_backend_bucket" "somaz_link_bucket_backend" {
-  name                  = "somaz-link-backend"
-  bucket_name           = var.somaz_link
-  enable_cdn            = true
-  edge_security_policy  = module.cloud_armor_region_block.policy_self_link
-  compression_mode      = "AUTOMATIC"
+  name                 = "somaz-link-backend"
+  bucket_name          = var.somaz_link
+  enable_cdn           = true
+  edge_security_policy = module.cloud_armor_region_block.policy_self_link
+  compression_mode     = "AUTOMATIC"
   custom_response_headers = [
     "Access-Control-Allow-Origin: *",
     "Access-Control-Allow-Methods: GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE",
@@ -36,7 +36,7 @@ resource "google_compute_url_map" "somaz_link_http_url_map" {
 resource "google_compute_url_map" "somaz_link_https_url_map" {
   name            = "somaz-link-https-url-map"
   default_service = google_compute_backend_bucket.somaz_link_bucket_backend.id
-  depends_on = [google_storage_bucket.somaz_link, google_compute_backend_bucket.somaz_link_bucket_backend]
+  depends_on      = [google_storage_bucket.somaz_link, google_compute_backend_bucket.somaz_link_bucket_backend]
 }
 
 resource "google_compute_target_http_proxy" "somaz_link_http_proxy" {
@@ -67,7 +67,7 @@ resource "google_compute_global_forwarding_rule" "somaz_link_https_forwarding_ru
 
 ## CDN(asset_somaz_link) ##
 resource "google_compute_managed_ssl_certificate" "asset_cdn_lb_certificate" {
-  name    = "asset-somaz-link-ssl-cert"
+  name = "asset-somaz-link-ssl-cert"
   managed {
     domains = [var.asset_somaz_link]
   }
@@ -93,7 +93,7 @@ resource "google_compute_url_map" "asset_somaz_link_http_url_map" {
 resource "google_compute_url_map" "asset_somaz_link_https_url_map" {
   name            = "asset-somaz-link-https-url-map"
   default_service = google_compute_backend_bucket.asset_somaz_link_bucket_backend.id
-  depends_on = [google_storage_bucket.asset_somaz_link, google_compute_backend_bucket.asset_somaz_link_bucket_backend]
+  depends_on      = [google_storage_bucket.asset_somaz_link, google_compute_backend_bucket.asset_somaz_link_bucket_backend]
 }
 
 resource "google_compute_target_http_proxy" "asset_somaz_link_http_proxy" {
@@ -162,18 +162,18 @@ resource "google_compute_global_forwarding_rule" "asset_somaz_link_https_forward
 
 ## CDN(stg_somaz_link) ##
 resource "google_compute_managed_ssl_certificate" "stg_cdn_lb_certificate" {
-  name    = "stg-somaz-link-ssl-cert"
+  name = "stg-somaz-link-ssl-cert"
   managed {
     domains = [var.stg_somaz_link]
   }
 }
 
 resource "google_compute_backend_bucket" "stg_somaz_link_bucket_backend" {
-  name             = "stg-somaz-link-backend"
-  bucket_name      = var.stg_somaz_link
-  enable_cdn       = true
+  name                 = "stg-somaz-link-backend"
+  bucket_name          = var.stg_somaz_link
+  enable_cdn           = true
   edge_security_policy = module.cloud_armor_ip_allow.policy_self_link
-  compression_mode = "AUTOMATIC"
+  compression_mode     = "AUTOMATIC"
 
   depends_on = [google_storage_bucket.stg_somaz_link, module.cloud_armor_ip_allow]
 }
@@ -190,7 +190,7 @@ resource "google_compute_url_map" "stg_somaz_link_http_url_map" {
 resource "google_compute_url_map" "stg_somaz_link_https_url_map" {
   name            = "stg-somaz-link-https-url-map"
   default_service = google_compute_backend_bucket.stg_somaz_link_bucket_backend.id
-  depends_on = [google_storage_bucket.stg_somaz_link, google_compute_backend_bucket.stg_somaz_link_bucket_backend]
+  depends_on      = [google_storage_bucket.stg_somaz_link, google_compute_backend_bucket.stg_somaz_link_bucket_backend]
 }
 
 resource "google_compute_target_http_proxy" "stg_somaz_link_http_proxy" {
