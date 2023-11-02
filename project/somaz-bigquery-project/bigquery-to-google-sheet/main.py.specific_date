@@ -8,18 +8,14 @@ import pytz
 
 MAX_ROWS_PER_BATCH = 1000
 
-def bigquery_to_sheets(request, desired_date=None): # Set the default value to None
+def bigquery_to_sheets(request, desired_date="2023-06-09"): # Modify Date(ex.2023-06-01, 2023-07-01 ....)
     try:
         logging.info("Starting bigquery_to_sheets function")
 
         # BigQuery setup
         client = bigquery.Client()
-        dataset_id = os.environ.get('BIGQUERY_DATASET', 'somaz.mongodb_dataset')
-
-        # If desired_date is None or "yesterday", set it to yesterday's date
-        if not desired_date or desired_date == "yesterday":
-            desired_date = (datetime.date.today() - datetime.timedelta(days=1)).strftime('%Y-%m-%d')
-
+        dataset_id = os.environ.get('BIGQUERY_DATASET', 'somaz.mongodb_dataset') # <project>.<dataset_name>
+        
         # Get list of tables in the dataset
         tables = list(client.list_tables(dataset_id))
         
