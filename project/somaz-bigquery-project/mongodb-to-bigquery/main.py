@@ -20,7 +20,7 @@ def start_dataflow(request):
     # Instantiate an API client for the Dataflow service
     service = build('dataflow', 'v1b3', credentials=credentials)
 
-    databases = ["dev1", "production"]  # Define a list of MongoDB databases
+    databases = ["production"]  # Define a list of MongoDB databases
 
     responses = []
 
