@@ -10,7 +10,7 @@ tf_state_bucket = "somaz-host-project-terraform-remote-tfstate"
 
 ## vpc ##
 shared_vpc       = "mgmt-share-vpc"
-service_project  = ["somaz-service-project-dev", "somaz-service-project-qa", "somaz-gitlab-project"]
+service_project  = ["somaz-service-project-dev", "somaz-service-project-qa", "somaz-gitlab-project", "somaz-service-project-prod", "somaz-bigquery-project", "somaz-ai-project"]
 subnet_share     = "mgmt-share-sub"
 dev_gke_pod      = "dev-somaz-gke-pod"
 dev_gke_service  = "dev-somaz-gke-service"

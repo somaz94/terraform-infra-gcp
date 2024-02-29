@@ -8,3 +8,4 @@ module "gcs_buckets" {
   versioning = local.buckets_versioning
 
 }
+
