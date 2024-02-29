@@ -28,7 +28,9 @@ This repository contains the configuration files and modules to set up and manag
 
 <br/><br/>
 
-## 🌐 Reference(Module)
+## 🌐 Reference
+
+### Module
 - [cloud_armor](https://github.com/GoogleCloudPlatform/terraform-google-cloud-armor)
 - [gcs_buckets](https://github.com/terraform-google-modules/terraform-google-cloud-storage)
 - [gke_autopilot](https://github.com/terraform-google-modules/terraform-google-kubernetes-engine/tree/master/modules/beta-autopilot-public-cluster)
@@ -40,6 +42,11 @@ This repository contains the configuration files and modules to set up and manag
 - [secret_manager](https://github.com/GoogleCloudPlatform/terraform-google-secret-manager)
 - [service_accounts](https://github.com/terraform-google-modules/terraform-google-service-accounts)
 - [workload_identity_federation](https://github.com/mscribellito/terraform-google-workload-identity-federation)
+
+### README
+- [somaz-ai-project](https://github.com/somaz94/terraform-infra-gcp/blob/main/project/somaz-ai-project/README.md)
+- [somaz-bigquery-project](https://github.com/somaz94/terraform-infra-gcp/blob/main/project/somaz-bigquery-project/README.md)
+- [terraform-bigquery-project](https://github.com/somaz94/terraform-bigquery-googlesheet)
 
 <br/>
 
