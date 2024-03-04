@@ -15,6 +15,7 @@ This repository contains the configuration files and modules to set up and manag
 - `somaz-service-project` : Infrastructure setup for the service project (dev, prod, and qa environments).
 - `somaz-host-project` : Infrastructure setup for the host project.
 - `somaz-bigquery-project` : Infrastructure setup for the bigquery project. (mongodb -> bigquery -> google sheet connection)
+- `somaz-ai-project` : Infrastructure setup for the ai project. (GPU Server)
 
 <br/><br/>
 
