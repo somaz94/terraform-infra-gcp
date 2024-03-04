@@ -21,7 +21,7 @@ resource "google_compute_instance" "ai_server" {
   }
 
   metadata = {
-    ssh-keys              = "nerdystar:${file("../../key/ai-server.pub")}"
+    ssh-keys              = "somaz:${file("../../key/ai-server.pub")}"
     install-nvidia-driver = "true"
   }
 
