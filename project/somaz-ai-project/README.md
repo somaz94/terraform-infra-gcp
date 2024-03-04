@@ -3,8 +3,9 @@
 <br/>
 
 ## Requesting GPU Quotas on GCP
-Before using GPUs on the Google Cloud Platform, you must request quotas for the necessary resources. Below are examples of quota requests for NVIDIA A100 GPUs.
+Before using GPUs on the Google Cloud Platform, you must request quotas for the necessary resources. 
 
+Below are examples of NVIDIA A100 GPUs:
 - **a2-highgpu-2g:** 2 x [NVIDIA A100 40GB GPUs](https://www.nvidia.com/en-us/data-center/a100/)
 - **a2-ultragpu-2g:** 2 x [NVIDIA A100 80GB GPUs](https://www.nvidia.com/en-us/data-center/a100/)
 
