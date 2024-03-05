@@ -27,7 +27,7 @@ resource "google_compute_instance" "ai_server" {
 
   network_interface {
     network    = "projects/${var.host_project}/global/networks/${var.shared_vpc}"
-    subnetwork = "projects/${var.host_project}/regions/${var.region}/subnetworks/${var.subnet_share}-ai-b"
+    subnetwork = "projects/${var.host_project}/regions/${var.region}/subnetworks/${var.subnet_share}-ai-a"
 
     access_config {
       ## Include this section to give the VM an external ip ##
