@@ -183,10 +183,10 @@ resource "google_cloudfunctions_function" "bigquery_deduplication_function" {
 resource "google_cloud_scheduler_job" "bigquery_remove_duplicates_job" {
   depends_on = [google_cloudfunctions_function.bigquery_deduplication_function]
 
-  name     = "bigquery-remove-duplicates-daily-job"
-  region   = var.region
-  schedule = "0 10 * * *" # Daily at 10:00 AM
-  time_zone  = "Asia/Seoul"
+  name      = "bigquery-remove-duplicates-daily-job"
+  region    = var.region
+  schedule  = "0 10 * * *" # Daily at 10:00 AM
+  time_zone = "Asia/Seoul"
 
   http_target {
     http_method = "GET"

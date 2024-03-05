@@ -13,6 +13,6 @@ shared_vpc   = "mgmt-share-vpc"
 subnet_share = "mgmt-share-sub"
 
 ## compute engine ##
-ai_server      = "ai-server"
-ai_server_ip   = "ai-server-ip"
-nfs_client     = "nfs-client"
+ai_server    = "ai-server"
+ai_server_ip = "ai-server-ip"
+nfs_client   = "nfs-client"
