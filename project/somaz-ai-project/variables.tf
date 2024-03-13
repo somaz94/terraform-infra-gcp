@@ -17,3 +17,13 @@ variable "subnet_share" {}
 variable "ai_server" {}
 variable "ai_server_ip" {}
 variable "nfs_client" {}
+
+## DB(Postgresql) ##
+variable "db_admin_user" {}
+variable "db_admin_password" {}
+variable "db_name" {}
+variable "redis_name" {}
+
+## cloud run ##
+variable "nginx_cloudrun" {}
+variable "shared_vpc_connector" {}
