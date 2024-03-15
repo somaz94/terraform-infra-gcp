@@ -14,6 +14,35 @@ resource "google_compute_firewall" "nfs_server_ssh" {
   depends_on = [module.vpc]
 }
 
+resource "google_compute_firewall" "ai_server_service" {
+  name    = "allow-service-ai-server"
+  network = var.shared_vpc
+
+  allow {
+    protocol = "tcp"
+    ports    = ["7860-7870", "8188"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
+  target_tags   = [var.ai_server]
+
+  depends_on = [module.vpc]
+}
+
+resource "google_compute_firewall" "redirect_dns_django_server" {
+  name    = "allow-redirect-django-server"
+  network = var.shared_vpc
+
+  allow {
+    protocol = "tcp"
+    ports    = ["80", "8080"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
+  target_tags   = [var.django_server]
+
+  depends_on = [module.vpc]
+}
 
 resource "google_compute_firewall" "shared_vpc_internal" {
   name    = "allow-shared-vpc-internal"

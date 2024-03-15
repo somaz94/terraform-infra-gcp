@@ -42,6 +42,7 @@ variable "service_server_ip" {}
 variable "prod_nfs_server_ip" {}
 variable "public_ip" {}
 variable "public_ip2" {}
+variable "ai_server" {}
 
 ## firewall ##
 variable "shared_vpc_internal_rules" {
@@ -51,6 +52,7 @@ variable "shared_vpc_internal_rules" {
     ports    = list(string)
   }))
 }
+variable "django_server" {}
 
 ## Cloud NAT & Router ##
 variable "nat_router" {}

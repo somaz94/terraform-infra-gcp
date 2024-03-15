@@ -17,6 +17,10 @@ variable "subnet_share" {}
 variable "ai_server" {}
 variable "ai_server_ip" {}
 variable "nfs_client" {}
+variable "django_server" {}
+variable "django_server_ip" {}
+variable "l4_server_1" {}
+variable "l4_server_1_ip" {}
 
 ## DB(Postgresql) ##
 variable "db_admin_user" {}
@@ -27,3 +31,6 @@ variable "redis_name" {}
 ## cloud run ##
 variable "nginx_cloudrun" {}
 variable "shared_vpc_connector" {}
+
+## cloud dns ##
+variable "django_lb_ip_name" {}

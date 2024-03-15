@@ -38,6 +38,7 @@ service_server_ip  = "service-server-ip"
 prod_nfs_server_ip = "prod-nfs-server-ip"
 public_ip          = "xx.xx.xx.xxx" # your public ip
 public_ip2         = "xx.xx.xx.xxx" # your public ip
+ai_server    = "ai-server"
 
 ## firewall ##
 shared_vpc_internal_rules = {
@@ -45,6 +46,7 @@ shared_vpc_internal_rules = {
   udp_all  = { protocol = "udp", ports = ["0-65535"] },
   icmp_all = { protocol = "icmp", ports = [] }
 }
+django_server    = "django-server"
 
 ## Cloud NAT & Router ##
 nat_router = "mgmt-share-vpc-nat-router"
