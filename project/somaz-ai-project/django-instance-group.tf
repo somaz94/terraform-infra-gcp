@@ -69,11 +69,11 @@ resource "google_compute_global_forwarding_rule" "backend_celery" {
 }
 
 resource "google_compute_url_map" "backend_celery_http_to_https_redirect" {
-  name            = "backend-celery-http-redirect"
+  name = "backend-celery-http-redirect"
   default_url_redirect {
-    https_redirect = true
+    https_redirect  = true
     prefix_redirect = "https://django.somaz.link"
-    strip_query    = false
+    strip_query     = false
   }
 }
 

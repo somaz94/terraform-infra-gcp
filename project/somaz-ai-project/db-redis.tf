@@ -50,12 +50,12 @@ module "postgresql" {
 
 ## memorystore(redis) ##
 module "memorystore" {
-  source      = "../../modules/memorystore"
-  name        = var.redis_name
-  project     = var.project
-  region      = var.region
-  labels      = local.default_labels
-  location_id = "${var.region}-a"
+  source                  = "../../modules/memorystore"
+  name                    = var.redis_name
+  project                 = var.project
+  region                  = var.region
+  labels                  = local.default_labels
+  location_id             = "${var.region}-a"
   enable_apis             = true
   auth_enabled            = false
   transit_encryption_mode = "DISABLED"
