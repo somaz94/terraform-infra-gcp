@@ -36,7 +36,7 @@ resource "google_compute_health_check" "backend_celery_health_check" {
   }
 }
 
-resource "google_compute_backend_service" "backend_celery_backend" {
+resource "google_compute_backend_service" "backend_celery_backend_service" {
   name        = "backend-celery-backend-service"
   description = "Backend Service for Backend Celery"
   protocol    = "HTTP"
@@ -50,20 +50,20 @@ resource "google_compute_backend_service" "backend_celery_backend" {
 resource "google_compute_url_map" "backend_celery_url_map" {
   name            = "backend-celery-url-map"
   description     = "URL map for backend-celery LB"
-  default_service = google_compute_backend_service.backend_celery_backend.self_link
-  depends_on      = [google_compute_backend_service.backend_celery_backend]
+  default_service = google_compute_backend_service.backend_celery_backend_service.self_link
+  depends_on      = [google_compute_backend_service.backend_celery_backend_service]
 }
 
-resource "google_compute_target_https_proxy" "backend_celery" {
+resource "google_compute_target_https_proxy" "backend_celery_https_proxy" {
   name             = "backend-celery-https-proxy"
   description      = "HTTPS proxy for Backend Celery service"
   url_map          = google_compute_url_map.backend_celery_url_map.self_link
   ssl_certificates = [google_compute_managed_ssl_certificate.django_server.self_link]
 }
 
-resource "google_compute_global_forwarding_rule" "backend_celery" {
-  name       = "backend-celery-forwarding-rule"
-  target     = google_compute_target_https_proxy.backend_celery.self_link
+resource "google_compute_global_forwarding_rule" "backend_celery_https_forwarding_rule" {
+  name       = "backend-celery-https-forwarding-rule"
+  target     = google_compute_target_https_proxy.backend_celery_https_proxy.self_link
   ip_address = google_compute_global_address.django_lb_ip.address
   port_range = "443"
 }
@@ -72,7 +72,6 @@ resource "google_compute_url_map" "backend_celery_http_to_https_redirect" {
   name = "backend-celery-http-redirect"
   default_url_redirect {
     https_redirect  = true
-    prefix_redirect = "https://django.somaz.link"
     strip_query     = false
   }
 }
