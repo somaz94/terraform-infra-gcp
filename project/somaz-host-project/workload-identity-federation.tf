@@ -34,6 +34,11 @@ module "workload_identity_federation" {
       name           = data.google_service_account.github-action.name
       attribute      = "attribute.repository/somaz94/*" # attribute.repository/github repository/*
       all_identities = true
+    },
+    {
+      name           = data.google_service_account.github-action.name
+      attribute      = "attribute.repository/somaz94-2/*"
+      all_identities = true
     }
   ]
 }
