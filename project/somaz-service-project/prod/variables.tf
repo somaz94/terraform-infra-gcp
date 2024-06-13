@@ -62,6 +62,7 @@ variable "redis" {}
 
 ## GKE ##
 variable "gke" {}
+variable "sd_gke" {}
 
 ## LoadBalancer ##
 variable "web_lb_ip_name" {}
