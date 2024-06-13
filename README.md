@@ -31,11 +31,13 @@ This repository contains the configuration files and modules to set up and manag
 
 ## 🌐 Reference
 
-### Module
+## Module
 - [cloud_armor](https://github.com/GoogleCloudPlatform/terraform-google-cloud-armor)
 - [gcs_buckets](https://github.com/terraform-google-modules/terraform-google-cloud-storage)
 - [gke_autopilot](https://github.com/terraform-google-modules/terraform-google-kubernetes-engine/tree/master/modules/beta-autopilot-public-cluster)
+- [gke_standard](https://github.com/terraform-google-modules/terraform-google-kubernetes-engine/tree/master/modules/beta-public-cluster-update-variant)
 - [memorystore](https://github.com/terraform-google-modules/terraform-google-memorystore)
+- [memorystore_cluster](https://github.com/terraform-google-modules/terraform-google-memorystore/tree/master/modules/redis-cluster)
 - [mysql](https://github.com/terraform-google-modules/terraform-google-sql-db/tree/master/modules/mysql)
 - [network](https://github.com/terraform-google-modules/terraform-google-network)
 - [network_peering](https://github.com/terraform-google-modules/terraform-google-network/tree/master/modules/network-peering)
@@ -43,6 +45,8 @@ This repository contains the configuration files and modules to set up and manag
 - [secret_manager](https://github.com/GoogleCloudPlatform/terraform-google-secret-manager)
 - [service_accounts](https://github.com/terraform-google-modules/terraform-google-service-accounts)
 - [workload_identity_federation](https://github.com/mscribellito/terraform-google-workload-identity-federation)
+- [mysql_public](https://github.com/terraform-google-modules/terraform-google-sql-db/tree/master/modules/mysql)
+- [postgresql](https://github.com/terraform-google-modules/terraform-google-sql-db/tree/master/modules/postgresql)
 
 ### README
 - [somaz-ai-project](https://github.com/somaz94/terraform-infra-gcp/blob/main/project/somaz-ai-project/README.md)

@@ -29,6 +29,8 @@ variable "prod_service_project" {
 }
 variable "prod_gke_pod" {}
 variable "prod_gke_service" {}
+variable "prod_gke_sd_pod" {}
+variable "prod_gke_sd_service" {}
 
 ## compute engine ##
 variable "nfs_server" {}

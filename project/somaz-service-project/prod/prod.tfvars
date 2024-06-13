@@ -67,6 +67,7 @@ redis = "prod-somaz-redis"
 
 ## GKE ##
 gke = "prod-somaz-gke"
+sd_gke = "prod-somaz-sd-gke"
 
 ## LoadBalancer ##
 web_lb_ip_name              = "prod-somaz-gke-web-lb-ip"

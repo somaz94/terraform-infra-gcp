@@ -25,6 +25,8 @@ prod_subnet_share    = "prod-mgmt-share-sub"
 prod_service_project = ["somaz-service-project-prod"]
 prod_gke_pod         = "prod-somaz-gke-pod"
 prod_gke_service     = "prod-somaz-gke-service"
+prod_gke_sd_pod      = "prod-somaz-gke-sd-pod"
+prod_gke_sd_service  = "prod-somaz-gke-sd-service"
 
 ## compute engine ##
 nfs_server         = "nfs-server"

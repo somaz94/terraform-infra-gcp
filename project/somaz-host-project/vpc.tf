@@ -164,6 +164,18 @@ module "prod_vpc" {
         ip_cidr_range = "10.101.128.0/22"
       },
     ]
+
+    "${var.prod_subnet_share}-prod-b" = [
+      {
+        range_name    = var.prod_gke_sd_pod
+        ip_cidr_range = "10.102.0.0/17"
+      },
+      {
+        range_name    = var.prod_gke_sd_service
+        ip_cidr_range = "10.102.128.0/22"
+      },
+    ]
+
   }
 
   routes = [
