@@ -43,6 +43,7 @@ prod_nfs_client = "prod-nfs-client"
 db_admin_user     = "admin"
 db_admin_password = "somaz"
 db_name           = "prod-somaz-db"
+db_name_public    = "prod-somaz-public-db"
 
 additional_databases = [
   {

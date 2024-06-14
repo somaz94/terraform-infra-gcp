@@ -48,6 +48,7 @@ variable "prod_nfs_client" {}
 variable "db_admin_user" {}
 variable "db_admin_password" {}
 variable "db_name" {}
+variable "db_name_public" {}
 variable "additional_databases" {
   description = "Additional databases to be created"
   type = list(object({
