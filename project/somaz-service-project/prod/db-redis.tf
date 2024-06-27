@@ -44,9 +44,20 @@ module "prod_mysql" {
 
   additional_databases = var.additional_databases
 
+  backup_configuration = {
+    enabled                        = true // 백업 활성화
+    binary_log_enabled             = true // 바이너리 로깅 활성화
+    start_time                     = "05:00" // 백업 시작 시간 (UTC)
+    location                       = var.region // 백업 위치 설정
+    point_in_time_recovery_enabled = true // 시점 복구 활성화
+    transaction_log_retention_days = "7" // 트랜잭션 로그 보존 일수
+    retained_backups               = 7 // 보존할 백업 수
+    retention_unit                 = "COUNT" // 보존 단위 (COUNT 또는 DAYS)
+  }
+
+
 }
 
-## eh db ##
 module "mysql_public" {
 
   source           = "../../../modules/mysql_public"
@@ -103,6 +114,18 @@ module "mysql_public" {
   ]
 
   # additional_databases = var.additional_databases
+
+  backup_configuration = {
+    enabled                        = true // 백업 활성화
+    binary_log_enabled             = true // 바이너리 로깅 활성화
+    start_time                     = "05:00" // 백업 시작 시간 (UTC)
+    location                       = var.region // 백업 위치 설정
+    point_in_time_recovery_enabled = true // 시점 복구 활성화
+    transaction_log_retention_days = "7" // 트랜잭션 로그 보존 일수
+    retained_backups               = 7 // 보존할 백업 수
+    retention_unit                 = "COUNT" // 보존 단위 (COUNT 또는 DAYS)
+  }
+
 
 }
 
